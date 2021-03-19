@@ -33,9 +33,18 @@
 
             </span>
                 </a>
-            </li> <li>
+            </li>
+            <li>
                 <a href="{{route('vendor.index')}}">
-                    <i class="fa fa-th"></i> <span>QL NCC</span>
+                    <i class="fa fa-industry"></i> <span>QL NCC</span>
+                    <span class="pull-right-container">
+
+            </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('user.index')}}">
+                    <i class="fa fa-users"></i> <span>QL Người Dùng</span>
                     <span class="pull-right-container">
 
             </span>

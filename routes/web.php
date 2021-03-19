@@ -17,3 +17,4 @@ Route::resource('category', 'CategoryController');
 Route::resource('photo', 'PhotoController');
 Route::resource('vendor', 'VendorController');
 Route::resource('home', 'HomeController');
+Route::resource('user', 'UserController');
