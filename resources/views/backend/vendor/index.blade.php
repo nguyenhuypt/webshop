@@ -1,93 +1,80 @@
+
 @extends('backend.layouts.main')
 
 @section('content')
-
     <section class="content-header">
         <h1>
-            Quản Lý Danh Sách - Nhà Cung Cấp
-
+            Danh sách nhà cung cấp <a href="{{route('admin.vendor.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm nhà cung cấp</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
-            <li class="active">Quản lý danh sách - nhà cung cấp</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Vendors</li>
         </ol>
     </section>
 
-
     <section class="content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Bordered Table</h3>
+                    <div class="box-header">
+                        <h3 class="box-title">Thông tin danh sách nhà cung cấp</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-bordered">
-                            <tbody><tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
-                            </tr>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
                             <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-red">55%</span></td>
+                                <th>TT</th>
+                                <th width="15%">Tên nhà cung cấp</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Hình ảnh</th>
+                                <th>Website</th>
+                                <th width="15%">Địa điểm</th>
+                                <th>Vị trí</th>
+                                <th>Trạng thái</th>
+                                <th class="text-center" width="15%">Hành động</th>
                             </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-yellow">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-light-blue">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-green">90%</span></td>
-                            </tr>
-                            </tbody></table>
+                            </thead>
+                            <tbody>
+                            @foreach($data as $key => $item)
+                                <tr class="item-{{ $item->id }}">
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $item -> name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>
+                                        @if($item->image)
+                                            {{--                                               Kiểm tra hình ảnh tồn tại --}}
+                                            <img src="{{ asset($item->image) }}" width="50" height="50" alt="">
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->website }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>{{ $item->position }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('admin.vendor.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple">
+                                            <i class="fa fa-pencil-square"></i>
+                                        </a>
+                                        <a href="javascript:void(0)" class="btn btn-flat btn-danger" onclick="destroyModel('vendor', {{ $item->id }})" >
+                                            <i class="fa fa-trash"></i>
+                                        </a>                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                     <!-- /.box-body -->
-                    <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin pull-right">
-                            <li><a href="#">«</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
-                    </div>
                 </div>
-                <!-- /.box -->
             </div>
             <!-- /.col -->
-
         </div>
+        <!-- /.row -->
     </section>
+
 @endsection
+
+
 

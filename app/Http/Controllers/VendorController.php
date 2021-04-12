@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class VendorController extends Controller
 {
@@ -13,7 +15,8 @@ class VendorController extends Controller
      */
     public function index()
     {
-        return view('backend.vendor.index');
+        $vendor = Vendor::all();
+        return view('backend.vendor.index', ['data'=>$vendor]);
     }
 
     /**
@@ -23,7 +26,11 @@ class VendorController extends Controller
      */
     public function create()
     {
-        return view('backend.vendor.create');
+        $max_position = Vendor::max('position');
+
+        return view('backend.vendor.create',[
+            'max_position' => $max_position
+        ]);
     }
 
     /**
@@ -34,7 +41,46 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+        ],[
+            'name.required' => 'Bạn cần phải nhập vào tên nhà cung cấp.',
+            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+        ]);
+
+        $vendor = new Vendor();
+        $vendor->name = $request->input('name');
+        $vendor->slug = Str::slug($request->input('name'));
+        $vendor->email = $request->input('email');
+        $vendor->phone = $request->input('phone');
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $file_name = time().'_'.$file->getClientOriginalName();
+            $path_upload = 'uploads/vendor/';
+            $file->move($path_upload,$file_name);
+            $vendor->image = $path_upload.$file_name;
+        }
+
+        $vendor->website = $request->input('website');
+        $vendor->address = $request->input('address');
+
+        $position = 0;
+        if($request->has('position')){
+            $position = $request->input('position');
+        }
+        $vendor->position = $position;
+
+        $is_active = 0;
+        if($request->has('is_active')){
+            $is_active = $request->input('is_active');
+        }
+        $vendor->is_active = $is_active;
+
+        $vendor->save();
+
+        return redirect()->route('admin.vendor.index');
     }
 
     /**
@@ -56,7 +102,13 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $vendor = Vendor::findorfail($id);
+
+        return view('backend.vendor.edit',[
+            'vendor' => $vendor
+        ]);
+
     }
 
     /**
@@ -68,7 +120,48 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+
+        ],[
+            'name.required' => 'Bạn cần phải nhập vào tên nhà cung cấp.',
+            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+
+        ]);
+
+        $vendor = Vendor::findorFail($id);
+        $vendor->name = $request->input('name');
+        $vendor->email = $request->input('email');
+        $vendor->phone = $request->input('phone');
+
+        if($request->hasFile('new_image')){
+            @unlink(public_path($vendor->image));
+            $file = $request->file('new_image');
+            $file_name = time().'_'.$file->getClientOriginalName();
+            $path_upload = 'uploads/vendor/';
+            $file->move($path_upload,$file_name);
+            $vendor->image = $path_upload.$file_name;
+        }
+
+        $vendor->website = $request->input('website');
+        $vendor->address = $request->input('address');
+
+        $position = 0;
+        if($request->has('position')){
+            $position = $request->input('position');
+        }
+        $vendor->position = $position;
+
+        $is_active = 0;
+        if($request->has('is_active')){
+            $is_active = $request->input('is_active');
+        }
+        $vendor->is_active = $is_active;
+
+        $vendor->save();
+
+        return redirect()->route('admin.vendor.index');
     }
 
     /**
@@ -79,6 +172,12 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Vendor::destroy($id);
+
+        $dataResp = [
+            'status' => true
+        ];
+
+        return response()->json($dataResp, 200);
     }
 }

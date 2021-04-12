@@ -1,91 +1,108 @@
 @extends('backend.layouts.main')
 
 @section('content')
-
     <section class="content-header">
         <h1>
-            Quản Lý Danh Mục
-
+            Thêm danh mục <a href="{{route('admin.category.index')}}" class="btn bg-purple pull-right"><i
+                    class="fa fa-list"></i> Danh Sách</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
-            <li class="active">Quản lý danh mục</li>
-        </ol>
     </section>
+
     <section class="content">
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
+                <!-- general form elements -->
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm thông tin danh mục</h3>
+                        <h3 class="box-title">Thông tin danh mục</h3>
                     </div>
-                    <form role="form">
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form role="form" action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="box-body">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Danh mục cha</label>
-                                    <select class="form-control" name="parent_id" id="parent_id">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Loại danh mục</label>
-                                    <select class="form-control" name="type" id="type">
-                                        <option>Sản phẩm</option>
-                                        <option>Bài viết</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên danh mục</label>
-                                    <input required type="text" class="form-control" id="name" name="name" placeholder="Enter name">
-                                </div>
 
-
-
+                            <div class="form-group">
+                                <label for="categoryOption">Danh mục cha</label>
+                                <select class="form-control" name="parent_id">
+                                    <option value="0"> -- Chọn --</option>
+                                    @foreach($data as $item)
+                                        <option value="{{ $item -> id }}">{{ $item -> name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputSupplier">Tên danh mục</label>
+                                <input type="text" class="form-control" id="title" name="name"
+                                       placeholder="Nhập tên danh mục">
+                                @if ($errors->has('name'))
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('name') }}</label>
+                                @endif
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Image</label>
-                                    <input type="file" id="image" name="image">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh</label>
+                                        <input type="file" id="image" name="image">
+                                    </div>
                                 </div>
-                                <div class="form-group ">
-                                    <label for="exampleInputPassword1">Vị trí hiển thị</label>
-                                    <input type="number" class="form-control" id="position" placeholder="Password" min="1" value="1">
-                                </div>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="is_active" id="is_active"> Hiển thị
-                                    </label>
+                                @if ($errors->has('image'))
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('image') }}</label>
+                                @endif
+                                <div class="col-md-6">
+                                    <br>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="1" name="is_active"> Trạng thái hiển thị
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Vị trí</label>
+                                <input type="number" class="form-control" id="position" name="position" value="1">
+                            </div>
 
-                        </div>
-                        <!-- /.box-body -->
+                            <div class="form-group">
+                                <label for="option">Loại Danh Mục</label>
+                                <select class="form-control" name="type">
+                                    <option value="1">Sản phẩm</option>
+                                    <option value="2">Tin tức</option>
+                                </select>
+                            </div>
+                            <!-- /.box-body -->
 
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Tạo</button>
+                            </div>
                         </div>
                     </form>
                 </div>
+                <!-- /.box -->
 
 
             </div>
-
-
+            <!--/.col (right) -->
         </div>
         <!-- /.row -->
     </section>
 @endsection
+
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+</script>
