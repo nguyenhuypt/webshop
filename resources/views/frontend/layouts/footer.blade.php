@@ -2,51 +2,52 @@
     <div class="flex-w p-b-90">
         <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
             <h4 class="s-text12 p-b-30">
-                GET IN TOUCH
+                Company
             </h4>
 
             <div>
-                <p class="s-text7 w-size27">
-                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+                <p style="font-size: large;" class="s-text5 w-size27">
+                    {{$setting->company}}
                 </p>
-
-                <div class="flex-m p-t-30">
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
+                <br>
+                <div>
+                    <ul>
+                        <li><span class="icon icon-map-marker"></span><span class="text">{{ $setting->address }}</span></li>
+                        <li><a href="#"><span class="icon icon-phone"></span><span class="text">{{ $setting->hotline }}</span></a></li>
+                        <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{ $setting->email }}</span></a></li>
+                    </ul>
                 </div>
+
             </div>
         </div>
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
             <h4 class="s-text12 p-b-30">
-                Categories
+                Menu
             </h4>
 
             <ul>
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Men
+                    <a href="" class="s-text7">
+                        Cửa hàng
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Women
+                        về chúng tôi
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Dresses
+                        Bài viết
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Sunglasses
+                    <a href="{{route('home.contact')}}" class="s-text7">
+                        Liên lạc với chúng tôi
                     </a>
                 </li>
             </ul>
@@ -54,31 +55,31 @@
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
             <h4 class="s-text12 p-b-30">
-                Links
+                HELP
             </h4>
 
             <ul>
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Search
+                        Các điều khoản
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        About Us
+                        Các vấn đề pháp lý
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Contact Us
+                    <a href="{{route('home.contact')}}" class="s-text7">
+                        Hỏi đáp
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Returns
+                    <a href="{{route('home.contact')}}" class="s-text7">
+                        Liên hệ
                     </a>
                 </li>
             </ul>
@@ -86,33 +87,25 @@
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
             <h4 class="s-text12 p-b-30">
-                Help
+                Link
             </h4>
 
             <ul>
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Track Order
-                    </a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-facebook ">Facebook</a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Returns
-                    </a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-instagram">Instagram</a>
+
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Shipping
-                    </a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play">Youtube</a>
+
                 </li>
 
-                <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        FAQs
-                    </a>
-                </li>
+
             </ul>
         </div>
 
@@ -140,23 +133,23 @@
 
     <div class="t-center p-l-15 p-r-15">
         <a href="#">
-            <img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
+            <img class="h-size2" src="frontend/images/icons/paypal.png" alt="IMG-PAYPAL">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="images/icons/visa.png" alt="IMG-VISA">
+            <img class="h-size2" src="frontend/images/icons/visa.png" alt="IMG-VISA">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD">
+            <img class="h-size2" src="frontend/images/icons/mastercard.png" alt="IMG-MASTERCARD">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS">
+            <img class="h-size2" src="frontend/images/icons/express.png" alt="IMG-EXPRESS">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
+            <img class="h-size2" src="frontend/images/icons/discover.png" alt="IMG-DISCOVER">
         </a>
 
         <div class="t-center s-text8 p-t-20">
@@ -164,3 +157,5 @@
         </div>
     </div>
 </footer>
+
+

@@ -43,10 +43,10 @@ class BrandController extends Controller
         //validate dữ liệu
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+            //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ], [
             'name'.'required' => 'tên không được để trống',
-            'image'.'image' => 'ảnh không đúng định dạng'
+            //'image'.'image' => 'ảnh không đúng định dạng'
         ]);
 
         //Khởi tạo Model và gán giá trị từ form cho những thuộc tính của đối tượng (cột trong CSDL)
@@ -120,10 +120,10 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+            //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ], [
             'name'.'required' => 'tên không được để trống',
-            'image'.'image' => 'ảnh không đúng định dạng'
+            //'image'.'image' => 'ảnh không đúng định dạng'
         ]);
 
         //Khởi tạo Model và gán giá trị từ form cho những thuộc tính của đối tượng (cột trong CSDL)

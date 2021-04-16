@@ -3,13 +3,9 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Danh sách tin tức <a href="{{route('admin.article.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm tin tức</a>
+            Danh sách tin tức <a href="{{route('admin.article.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm Mới</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Articles</li>
-        </ol>
+
     </section>
 
     <section class="content">
@@ -24,15 +20,15 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>TT</th>
+                                <th width="5%">TT</th>
                                 <th width="12%">Tiêu đề bài viết</th>
-                                <th>Hình ảnh</th>
-                                <th width="20%">Mô tả</th>
-                                <th>Tác giả</th>
+                                <th width="15%">Hình ảnh</th>
+                                <th width="30%">Mô tả</th>
+{{--                                <th>Tác giả</th>--}}
                                 {{--                                <th width="25%">Mô tả chi tiết</th>--}}
 {{--                                <th width="10%">Danh mục</th>--}}
-                                <th>Vị trí</th>
-                                <th>Trạng thái</th>
+                                <th width="5%">Vị trí</th>
+                                <th width="5%">Trạng thái</th>
                                 <th class="text-center" width="15%">Hành động</th>
                             </tr>
                             </thead>
@@ -44,13 +40,13 @@
                                     <td>
                                         @if($item->image)
                                             {{--                                               Kiểm tra hình ảnh tồn tại --}}
-                                            <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
+                                            <img src="{{ asset($item->image) }}" width="200" height="100" alt="">
                                         @endif
                                     </td>
 
                                     {{--                                     Sử dụng  {!!  !!}} để loại bỏ các thẻ html--}}
                                     <td>{!! $item->summary !!}</td>
-                                    <td>{{@$item->user->name}}</td>
+{{--                                    <td>{{@$item->user->name}}</td>--}}
                                     {{--                                        <td>{{ $item->description }}</td>--}}
 {{--                                    <td>{{@$item->category->name}}</td>--}}
                                     <td>{{ $item->position }}</td>
@@ -68,6 +64,7 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
+
                 </div>
             </div>
             <!-- /.col -->

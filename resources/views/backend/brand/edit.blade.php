@@ -41,14 +41,14 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input {{($brand->is_active) ? 'checked' : ''}}type="checkbox" value="1" name="is_active"> Trạng thái hiển thị
+                                    <input {{ ($brand->is_active == 1) ? 'checked' : '' }} type="checkbox" value="1" name="is_active"> Kích hoạt tài khoản
                                 </label>
                             </div>
                         </div>
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Tạo</button>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
                         </div>
                     </form>
                 </div>

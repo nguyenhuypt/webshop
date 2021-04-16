@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(20);
+        $products = Product::latest()->paginate(10);
 
         return view('backend.product.index', [
             'data' => $products
@@ -54,10 +54,10 @@ class ProductController extends Controller
 //validate dữ liệu gửi từ form
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+//            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ], [
             'name.required' => 'Tên không được để trống',
-            'image.image' => 'Ảnh không đúng định dạng'
+//            'image.image' => 'Ảnh không đúng định dạng'
         ]);
 
         $product = new Product(); // khởi tạo model
@@ -151,10 +151,10 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+//            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ], [
             'name.required' => 'Tên không được để trống',
-            'image.image' => 'Ảnh không đúng định dạng'
+//            'image.image' => 'Ảnh không đúng định dạng'
         ]);
 
         $product = Product::findorFail($id);

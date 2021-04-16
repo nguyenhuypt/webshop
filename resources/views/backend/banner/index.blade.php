@@ -3,14 +3,10 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Danh sách Banners <a href="{{route('admin.banner.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm Banner</a>
+            Danh sách Banners <a href="{{route('admin.banner.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm Mới</a>
             {{--            <small>advanced tables</small>--}}
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Banners</li>
-        </ol>
+
     </section>
 
     <section class="content">
@@ -45,7 +41,7 @@
                                     <td>
                                         @if( ($item->image))
                                             {{--                                            Kiểm tra hình ảnh tồn tại--}}
-                                            <img src="{{ asset($item->image) }}" width="50" height="50" alt="">
+                                            <img src="{{ asset($item->image) }}" width="100" height="50" alt="">
                                         @endif
                                     </td>
                                     <td>{{ $item->target }}</td>
@@ -66,6 +62,7 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
+
                 </div>
             </div>
             <!-- /.col -->

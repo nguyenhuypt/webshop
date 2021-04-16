@@ -3,8 +3,8 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm danh mục <a href="{{route('admin.category.index')}}" class="btn bg-purple pull-right"><i
-                    class="fa fa-list"></i> Danh Sách</a>
+            Thêm danh mục <small><a href="{{route('admin.product.index')}}" class="btn bg-purple btn-flat"> <i class="fa fa-bars"></i>
+                    Danh Sách</a></small>
         </h1>
     </section>
 
@@ -50,9 +50,9 @@
                                         <input type="file" id="image" name="image">
                                     </div>
                                 </div>
-                                @if ($errors->has('image'))
-                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('image') }}</label>
-                                @endif
+{{--                                @if ($errors->has('image'))--}}
+{{--                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('image') }}</label>--}}
+{{--                                @endif--}}
                                 <div class="col-md-6">
                                     <br>
                                     <div class="checkbox">

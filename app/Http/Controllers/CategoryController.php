@@ -15,13 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $data = Category::latest()->paginate(50);
 
-        $categories =  Category::latest()->paginate(20);
-
-        return view('backend.category.index',[
-            'data' => $categories
-        ]);
-
+        return view('backend.category.index', ['data' => $data]);
     }
 
     /**
@@ -31,6 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        // 1. lấy toàn bộ dữ danh mục
         $data = Category::all();
 
         return view('backend.category.create',[
@@ -47,13 +44,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+//            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:100000'
         ],[
             'name.required' => 'Bạn cần phải nhập vào tên danh mục.',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+//            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
         ]);
 
         $category = new Category();
@@ -98,7 +94,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -109,17 +105,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-
-        // get data from db
-        $all_cateogires = Category::all();
-
+        $data = Category::all();
         $category = Category::findorFail($id);
-
-        return view('backend.category.edit', [
-            'all_categories' => $all_cateogires,
-            'category' => $category
+        return view('backend.category.edit',[
+            'data' => $category,
+            'category' => $data
         ]);
-
     }
 
     /**
@@ -131,48 +122,44 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        //validate dữ liệu gửi từ form
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
-        ], [
-            'name.required' => 'Tên không được để trống',
-            'image.image' => 'Ảnh không đúng định dạng'
+//            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        ],[
+            'name.required' => 'Bạn cần phải nhập vào tên danh mục.',
+//            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
         ]);
 
-        //luu vào csdl
         $category = Category::findorFail($id);
+        $category->parent_id = $request->input('parent_id');
         $category->name = $request->input('name');
         $category->slug = Str::slug($request->input('name'));
-        $category->parent_id = $request->input('parent_id');
 
-        if ($request->hasFile('new_image')) {
-            // xóa file cũ
+        if($request->hasFile('new_image')){
             @unlink(public_path($category->image));
-            // get file mới
             $file = $request->file('new_image');
-            // get tên
             $filename = time().'_'.$file->getClientOriginalName();
-            // duong dan upload
             $path_upload = 'uploads/category/';
-            // upload file
-            $request->file('new_image')->move($path_upload,$filename);
-
+            $file->move($path_upload,$filename);
             $category->image = $path_upload.$filename;
         }
 
         $is_active = 0;
-        if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
+        if($request->has('is_active')){
             $is_active = $request->input('is_active');
         }
-
         $category->is_active = $is_active;
-        $category->position = $request->input('position');
+
+        $position = 0;
+        if($request->has('position')){
+            $position = $request->input('position');
+        }
+        $category->position  = $position;
+
+        $category->type = $request->input('type');
         $category->save();
 
-        // chuyen dieu huong trang
-        return redirect()->route('admin.category.index');
+        return  redirect()->route('admin.category.index');
     }
 
     /**
@@ -183,9 +170,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-
+        // gọi tới hàm destroy của laravel để xóa 1 object
         Category::destroy($id);
 
+        // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
         $dataResp = [
             'status' => true
         ];

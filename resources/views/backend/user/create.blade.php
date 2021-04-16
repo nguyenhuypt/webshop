@@ -8,10 +8,7 @@
                 Danh Sách</a>
 
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
-            <li class="active">thông tin người dùng</li>
-        </ol>
+
     </section>
     <section class="content">
         <div class="row">

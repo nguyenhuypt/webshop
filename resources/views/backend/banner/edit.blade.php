@@ -3,8 +3,8 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cập nhật Banner <a href="{{route('admin.banner.index')}}" class="btn bg-purple pull-right"><i class="fa fa-list"></i> Danh Sách</a>
-        </h1>
+            Cập nhật Banner <a href="{{route('admin.banner.index')}}" class="btn bg-purple btn-flat"> <i class="fa fa-bars"></i>
+                Danh Sách</a>
     </section>
 
     <section class="content">

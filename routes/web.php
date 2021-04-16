@@ -33,3 +33,5 @@ Route::get('/admin', 'AdminController@login')->name('admin.index');
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 Route::post('/admin/login', 'AdminController@postLogin')->name('admin.postLogin');
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
+Route::get('/lien-he', 'HomeController@contact')->name('home.contact');
+Route::post('/lien-he', 'HomeController@postContact')->name('home.postContact');

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends GeneralController
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.home.main');
+        return view('frontend.home');
     }
 
     /**
@@ -21,6 +22,38 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function postContact(Request $request)
+    {
+        //validate
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email'
+        ], [
+            'name.required' => 'Bạn cần nhập vào tên',
+            'email.required' => 'Bạn cần nhập vào địa chỉ email',
+            'email.email' => 'Địa chỉ email không hợp lệ'
+        ]);
+
+        $contact = new Contact();
+        $contact->name = $request->input('name');
+        $contact->phone = $request->input('phone');
+        $contact->email = $request->input('email');
+        $contact->content = $request->input('content');
+        $contact->save();
+        return redirect()->route('home.contact')->with('msg', 'Bạn đã gửi tin nhắn thành công');
+    }
+
     public function create()
     {
         //

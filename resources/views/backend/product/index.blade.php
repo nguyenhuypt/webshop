@@ -12,18 +12,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header">
-                        <div class="box-tools">
-                            <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control pull-right"
-                                       placeholder="Search">
 
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
@@ -32,7 +21,7 @@
                                 <th>TT</th>
                                 <th>Hình ảnh</th>
                                 <th style="max-with:200px">Tên SP</th>
-                                <th>Danh mục</th>
+                                <th width="10%">Danh mục</th>
                                 <th>Số lượng</th>
                                 <th>Giá KM</th>
                                 <th>Giá Gốc</th>
@@ -58,9 +47,7 @@
                                     <td>{{ ($item->is_hot == 1) ? 'Có' : 'Không' }}</td>
                                     <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Ẩn' }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.product.edit', ['id'=> $item->id]) }}" class="btn btn-flat btn-info">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
+                                        <a href="{{ route('admin.product.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <a href="javascript:void(0)" class="btn btn-flat btn-danger" onclick="destroyModel('product', {{ $item->id }})" >
                                             <i class="fa fa-trash"></i>
                                         </a>

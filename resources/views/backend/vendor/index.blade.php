@@ -6,11 +6,7 @@
         <h1>
             Danh sách nhà cung cấp <a href="{{route('admin.vendor.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm nhà cung cấp</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Vendors</li>
-        </ol>
+
     </section>
 
     <section class="content">
@@ -47,7 +43,7 @@
                                     <td>
                                         @if($item->image)
                                             {{--                                               Kiểm tra hình ảnh tồn tại --}}
-                                            <img src="{{ asset($item->image) }}" width="50" height="50" alt="">
+                                            <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
                                         @endif
                                     </td>
                                     <td>{{ $item->website }}</td>

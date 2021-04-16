@@ -3,12 +3,9 @@
 @section('content')
     <section class="content-header">
         <h1>
-            QL User <a href="{{ route('admin.user.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
+            QL User <a href="{{ route('admin.user.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm Mới</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li class="active">QL Danh Sách - Nhà Cung Cấp</li>
-        </ol>
+
     </section>
 
     <section class="content">
@@ -44,7 +41,8 @@
                                         <a href="{{ route('admin.user.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <a href="javascript:void(0)" class="btn btn-flat btn-danger" onclick="destroyModel('user', {{ $item->id }})" >
                                             <i class="fa fa-trash"></i>
-                                        </a>                                    </td>
+                                        </a>
+                                    </td>
                                 </tr>
 
                             @endforeach

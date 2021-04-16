@@ -1,3 +1,115 @@
+<style>
+    .wrapper{
+        float:left;
+        width:100%;
+        min-height:250px;
+    }
+    .navigation{
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+    .navigation ul{
+        margin: 0;
+        padding: 0;
+        float: none;
+        width: auto;
+        list-style: none;
+        display: inline-block;
+    }
+    .navigation ul li{
+        float: left;
+        width: auto;
+        margin-right: 60px;
+        position: relative;
+    }
+    .navigation ul li:last-child{
+        margin: 0;
+    }
+    .navigation ul li a{
+        float: left;
+        width: 100%;
+        color: #333;
+        padding: 16px 0;
+        font-size: 16px;
+        line-height: normal;
+        text-decoration:none;
+        box-sizing:border-box;
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;      -webkit-transition:color 0.3s ease;
+        transition:color 0.3s ease;
+    }
+    .navigation .children {
+        position: absolute;
+        top: 100%;
+        z-index: 1000;
+        margin: 0;
+        padding: 0;
+        left: 0;
+        min-width: 240px;
+        background-color: #fff;
+        border: solid 1px #dbdbdb;
+        opacity: 0;
+        -webkit-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+        transition: opacity 0.3s, -webkit-transform 0.3s;
+        transition: transform 0.3s, opacity 0.3s;
+        transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+    }
+    .navigation ul li .children  {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform: rotateX(-75deg);
+        transform: rotateX(-75deg);
+        visibility: hidden;
+    }
+    .navigation ul li:hover > .children  {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        opacity: 1;
+        visibility: visible;
+    }
+    .navigation ul li .children .children{
+        left: 100%;
+        top: 0;
+    }
+    .navigation ul li.last .children{
+        right: 0;
+        left: auto;
+    }
+    .navigation ul li.last .children .children{
+        right: 100%;
+        left: auto;
+    }
+    .navigation ul li .children li{
+        float: left;
+        width: 100%;
+        margin:0;
+    }
+    .navigation ul li .children  a {
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 11px;
+        color: #333;
+        text-align: left;
+        line-height: 1.5em;
+        padding: 16px 30px;
+        letter-spacing: normal;
+        border-bottom: 1px solid #dbdbdb;
+        -webkit-transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease;
+    }
+    .navigation ul li .children  a:hover{
+        color: #fff;
+        background-color:goldenrod;
+    }
+    .navigation ul li a:hover{
+        color:goldenrod;
+    }
+</style>
 <header class="header1">
     <!-- Header desktop -->
     <div class="container-menu-header">
@@ -30,45 +142,36 @@
 
         <div class="wrap_header">
             <!-- Logo -->
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="/frontend/images/icons/logo.png" alt="IMG-LOGO">
             </a>
 
             <!-- Menu -->
             <div class="wrap_menu">
-                <nav class="menu">
-                    <ul class="main_menu">
+                <nav class="navigation">
+                    <ul>
+
+                        <li class="last">
+                            <a href="/">Trang Chủ</a>
+                        </li>
+
+                        @foreach($categories as $cate)
+                            @if($cate->parent_id == 0)
                         <li>
-                            <a href="index.html">Home</a>
-                            <ul class="sub_menu">
-                                <li><a href="index.html">Homepage V1</a></li>
-                                <li><a href="home-02.html">Homepage V2</a></li>
-                                <li><a href="home-03.html">Homepage V3</a></li>
+                            <a href="">{{$cate->name}}</a>
+                            <ul class="children sub-menu">
+                                @foreach($categories as $child)
+                                    @if($child->parent_id == $cate->id)
+                                        <a class="dropdown-item" href="shop.html">{{ $child->name }}</a>
+                                    @endif
+                                @endforeach
                             </ul>
                         </li>
+                            @endif
+                        @endforeach
 
-                        <li>
-                            <a href="product.html">Shop</a>
-                        </li>
-
-                        <li class="sale-noti">
-                            <a href="product.html">Sale</a>
-                        </li>
-
-                        <li>
-                            <a href="cart.html">Features</a>
-                        </li>
-
-                        <li>
-                            <a href="blog.html">Blog</a>
-                        </li>
-
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-
-                        <li>
-                            <a href="contact.html">Contact</a>
+                        <li class="last">
+                            <a href="{{route('home.contact')}}">Contact Us</a>
                         </li>
                     </ul>
                 </nav>

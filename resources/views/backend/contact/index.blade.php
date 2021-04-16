@@ -4,7 +4,6 @@
     <section class="content-header">
         <h1>
             Thông tin liên hệ
-            <small><a href="{{ route('admin.contact.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i>Thêm mới</a></small>
 
         </h1>
 
