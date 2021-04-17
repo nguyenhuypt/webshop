@@ -14,7 +14,9 @@ class HomeController extends GeneralController
      */
     public function index()
     {
+
         return view('frontend.home');
+
     }
 
     /**

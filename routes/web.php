@@ -25,10 +25,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin
     Route::resource('banner', 'BannerController');
     Route::resource('brand', 'BrandController');
     Route::resource('contact', 'ContactController');
+    Route::resource('dashboard', 'AdminController');
 });
-Route::get('/','HomeController@index')->name('home.index');
+Route::get('/','HomeController@index')->name('home');
 Route::get('/admin/dashboard','AdminController@dashboard')->name('admin.dashboard');
-
+Route::get('/gio-hang', 'CartController@index')->name('home.cart');
+Route::get('/thanh-toan', 'CartController@checkout')->name('home.cart.checkout');
 Route::get('/admin', 'AdminController@login')->name('admin.index');
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 Route::post('/admin/login', 'AdminController@postLogin')->name('admin.postLogin');
