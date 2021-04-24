@@ -61,10 +61,10 @@
                                     <div class="form-group">
                                         <label>Loại</label>
                                         <select class="form-control" name="type">
-                                            <option value="1" {{ ($data->type == '1') ? 'selected' : ''  }}>Slide</option>
-                                            <option value="2" {{ ($data->type == '2') ? 'selected' : ''  }}>Background</option>
-                                            <option value="3" {{ ($data->type == '3') ? 'selected' : ''  }}>Banner right</option>
-                                            <option value="4" {{ ($data->type == '4') ? 'selected' : ''  }}>Banner left</option>
+                                            <option value="1" {{ ($data->type == '1') ? 'selected' : ''  }}>Slide Home</option>
+                                            <option value="2" {{ ($data->type == '2') ? 'selected' : ''  }}>Banner cuối trang</option>
+                                            <option value="3" {{ ($data->type == '3') ? 'selected' : ''  }}>Banner phải</option>
+                                            <option value="4" {{ ($data->type == '4') ? 'selected' : ''  }}>Banner trái</option>
                                         </select>
                                     </div>
                                 </div>

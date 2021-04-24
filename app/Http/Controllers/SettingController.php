@@ -81,7 +81,7 @@ class SettingController extends Controller
         $setting->phone = $request->input('phone');
         $setting->hotline = $request->input('hotline');
         $setting->address = $request->input('address');
-        $setting->address2 = $request->input('address2');
+
         $setting->tax = $request->input('tax');
         $setting->facebook = $request->input('facebook');
         $setting->email = $request->input('email');

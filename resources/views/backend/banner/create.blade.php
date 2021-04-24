@@ -56,10 +56,10 @@
                                     <div class="form-group">
                                         <label>Loại</label>
                                         <select class="form-control" name="type">
-                                            <option value="1">Slide</option>
-                                            <option value="2">Background</option>
-                                            <option value="3">Banner right</option>
-                                            <option value="4">Banner left</option>
+                                            <option value="1">Slide Home</option>
+                                            <option value="2">Banner cuối trang</option>
+                                            <option value="3">Banner phải</option>
+                                            <option value="4">Banner trái</option>
                                         </select>
                                     </div>
                                 </div>

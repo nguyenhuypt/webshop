@@ -17,92 +17,95 @@
                         <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{ $setting->email }}</span></a></li>
                     </ul>
                 </div>
-
+                <div class="flex-m p-t-30">
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
+                </div>
             </div>
         </div>
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-            <h4 class="s-text12 p-b-30">
-                Menu
-            </h4>
+
 
             <ul>
                 <li class="p-b-9">
-                    <a href="" class="s-text7">
-                        Cửa hàng
+                    <a href="#" class="s-text7">
+                        Giới thiệu công ty
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        về chúng tôi
+                        Blog
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Bài viết
+                        CSKH
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="{{route('home.contact')}}" class="s-text7">
-                        Liên lạc với chúng tôi
+                        Góp ý ,khiếu nại
                     </a>
                 </li>
             </ul>
         </div>
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-            <h4 class="s-text12 p-b-30">
-                HELP
-            </h4>
+
 
             <ul>
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Các điều khoản
+                        Điều khoản
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Các vấn đề pháp lý
+                        Chính sách bảo mật
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="{{route('home.contact')}}" class="s-text7">
-                        Hỏi đáp
+                    <a href="#" class="s-text7">
+                        Bảo hành
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="{{route('home.contact')}}" class="s-text7">
-                        Liên hệ
+                    <a href="#" class="s-text7">
+                        Chính hãng
                     </a>
                 </li>
             </ul>
         </div>
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-            <h4 class="s-text12 p-b-30">
-                Link
-            </h4>
+
 
             <ul>
                 <li class="p-b-9">
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-facebook ">Facebook</a>
+                    <a href="#" class="s-text7">
+                        Mua hàng online
+                    </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-instagram">Instagram</a>
-
+                    <a href="#" class="s-text7">
+                        Phương thức thanh toán
+                    </a>
                 </li>
-
                 <li class="p-b-9">
-                    <a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play">Youtube</a>
-
+                    <a href="{{route('home.about')}}" class="s-text7">
+                        About us
+                    </a>
                 </li>
 
 
@@ -158,11 +161,7 @@
     </div>
 </footer>
 <!-- Back to top -->
-<div class="btn-back-to-top bg0-hov" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
-		</span>
-</div>
+
 
 <!-- Container Selection1 -->
 <div id="dropDownSelect1"></div>

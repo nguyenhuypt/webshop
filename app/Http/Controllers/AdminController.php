@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function dashboard() {
-        return view('backend.dashboard');
-    }
+
     public function login(){
         return view('backend.login');
     }
@@ -34,7 +32,7 @@ class AdminController extends Controller
 
         // kiểm tra xem có đăng nhập thành công với email và password đã nhập hay không
         if ($checkLogin) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard.index');
         }
 
         return redirect()->back()->with('msg', ' Email hoặc Password không đúng !');

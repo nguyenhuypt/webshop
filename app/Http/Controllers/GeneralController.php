@@ -17,6 +17,7 @@ class GeneralController extends Controller
         $categories = Category::where([
             'is_active' => 1
         ])->orderBy('position', 'ASC')->get();
+        $this->categories = $categories;
 
         // Danh mục
 //        $menu = Category::where('is_active',1)->orderBy('position','ASC')
