@@ -48,7 +48,8 @@
 				</span>
 
                 <p class="s-text8 p-t-10">
-                    Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+                    Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare
+                    feugiat.
                 </p>
 
                 <!--  -->
@@ -58,23 +59,6 @@
 
 
 
-                        <div class="flex-m flex-w">
-                            <div class="s-text15 w-size15 t-center">
-                                Color
-                            </div>
-
-                            <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size26">
-                                <select class="selection-2" name="color">
-                                    <option>Choose an option</option>
-                                    <option>Gray</option>
-                                    <option>Red</option>
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                </select>
-                            </div>
-                        </div>
-
-
                     <div class="flex-r-m flex-w p-t-10">
                         <div class="w-size16 flex-m flex-w">
                             <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
@@ -82,7 +66,8 @@
                                     <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
                                 </button>
 
-                                <input class="size8 m-text18 t-center num-product" type="number" name="num-product" value="1">
+                                <input class="size8 m-text18 t-center num-product" type="number" name="num-product"
+                                       value="1">
 
                                 <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
                                     <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -107,28 +92,28 @@
                 <!--  -->
                 <div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
                     <h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-                        Description
+                        Tóm tắt
                         <i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
                         <i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
                     </h5>
 
                     <div class="dropdown-content dis-none p-t-15 p-b-23">
                         <p class="s-text8">
-                            Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+                            {{$product->summary}}
                         </p>
                     </div>
                 </div>
 
                 <div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
                     <h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-                        Additional information
+                        Mô tả
                         <i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
                         <i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
                     </h5>
 
                     <div class="dropdown-content dis-none p-t-15 p-b-23">
                         <p class="s-text8">
-                            Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+                            {{$product->description}}
                         </p>
                     </div>
                 </div>
@@ -142,7 +127,8 @@
 
                     <div class="dropdown-content dis-none p-t-15 p-b-23">
                         <p class="s-text8">
-                            Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+                            Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel
+                            sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
                         </p>
                     </div>
                 </div>
@@ -154,7 +140,7 @@
         <div class="container">
             <div class="sec-title p-b-60">
                 <h3 class="m-text5 t-center">
-                    Related Products
+                    SẢN PHẨM TƯƠNG TỰ
                 </h3>
             </div>
 
@@ -162,39 +148,33 @@
             <div class="wrap-slick2">
                 <div class="slick2">
                     @foreach($sameProducts as $product)
-                    <div class="item-slick2 p-l-15 p-r-15">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-img wrap-pic-w of-hidden pos-relative ">
-                                <img src="{{asset($product->image)}}" alt="IMG-PRODUCT">
+                        <div class="item-slick2 col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                            <!-- Block2 -->
+                            <div class="block2">
+                                <div class="block2-pic hov-img0">
 
-                                <div class="block2-overlay trans-0-4">
-                                    <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                        <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                        <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                    <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" >
+                                        <img width="180" height="250" src="{{asset($product->image)}}" alt="{{$product->name}}">
+
                                     </a>
 
-                                    <div class="block2-btn-addcart w-size1 trans-0-4">
-                                        <!-- Button -->
-                                        <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-                                            Add to Cart
-                                        </button>
+                                </div>
+
+                                <div class="block2-txt flex-w flex-t p-t-14">
+                                    <div class="block2-txt-child1 flex-col-l ">
+                                        <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{$product->name}}</a>
+
+                                        <span class="block2-oldprice m-text7 p-r-5">
+										{{ number_format($product->sale, 0,",",".") }}đ
+									</span>
+
+                                        <span class="block2-newprice m-text8 p-r-5">
+										{{ number_format($product->price,0,",",".") }}đ
+									</span>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="block2-txt p-t-20">
-                                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-                                    {{ $product->name }}
-                                </a>
-
-                                <span class="block2-price m-text6 p-r-5">
-									{{ number_format($product -> price,0,",",".") }} đ
-								</span>
-                            </div>
                         </div>
-                    </div>
-
                     @endforeach
                 </div>
             </div>

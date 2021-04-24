@@ -41,31 +41,35 @@
                 </div>
                 <div class="wrap-slick2">
                     <div class="slick2">
-                    @foreach($item['products'] as $product)
-                        <div class="item-slick2 col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-                            <!-- Block2 -->
-                            <div class="block2">
-                                <div class="block2-pic hov-img0">
-                                    <img width="180" height="250" src="{{asset($product->image)}}" alt="{{$product->name}}">
+                        @foreach($item['products'] as $product)
+                            <div class="item-slick2 col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                                <!-- Block2 -->
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0">
 
-                                </div>
+                                        <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" >
+                                            <img width="180" height="250" src="{{asset($product->image)}}" alt="{{$product->name}}">
 
-                                <div class="block2-txt flex-w flex-t p-t-14">
-                                    <div class="block2-txt-child1 flex-col-l ">
-                                        <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{$product->name}}</a>
+                                        </a>
 
-                                        <span class="block2-oldprice m-text7 p-r-5">
+                                    </div>
+
+                                    <div class="block2-txt flex-w flex-t p-t-14">
+                                        <div class="block2-txt-child1 flex-col-l ">
+                                            <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{$product->name}}</a>
+
+                                            <span class="block2-oldprice m-text7 p-r-5">
 										{{ number_format($product->sale, 0,",",".") }}đ
 									</span>
 
-                                        <span class="block2-newprice m-text8 p-r-5">
+                                            <span class="block2-newprice m-text8 p-r-5">
 										{{ number_format($product->price,0,",",".") }}đ
 									</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                     </div>
                 </div>
             @endforeach
