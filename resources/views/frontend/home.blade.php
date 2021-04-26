@@ -2,34 +2,7 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <section class="slide1">
 
-        <div class="wrap-slick1">
-
-            <div class="slick1">
-                @if(!empty($banners))
-                    @foreach($banners as $banner )
-                        <div class="item-slick1 item1-slick1" style="background-image: url({{asset($banner->image)}});">
-                            <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
-
-
-                                <div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
-                                    <!-- Button -->
-                                    <a href="" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
-                                        Shop Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    @endforeach
-                @endif
-            </div>
-        </div>
-
-
-    </section>
 
 
     <section class="newproduct bgwhite p-t-45 p-b-85">
@@ -107,74 +80,6 @@
                 @endforeach
                 @endif
 
-{{--                <div class="col-sm-10 col-md-8 col-lg-6 m-l-r-auto p-t-15 p-b-15">--}}
-{{--                    <div class="bgwhite hov-img-zoom pos-relative p-b-20per-ssm">--}}
-{{--                        <img src="frontend/images/shop-item-09.jpg" alt="IMG-BANNER">--}}
-
-{{--                        <div class="ab-t-l sizefull flex-col-c-b p-l-15 p-r-15 p-b-20">--}}
-{{--                            <div class="t-center">--}}
-{{--                                <a href="product-detail.html" class="dis-block s-text3 p-b-5">--}}
-{{--                                    Gafas sol Hawkers one--}}
-{{--                                </a>--}}
-
-{{--                                <span class="block2-oldprice m-text7 p-r-5">--}}
-{{--									$29.50--}}
-{{--								</span>--}}
-
-{{--                                <span class="block2-newprice m-text8">--}}
-{{--									$15.90--}}
-{{--								</span>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="flex-c-m p-t-44 p-t-30-xl">--}}
-{{--                                <div class="flex-col-c-m size3 bo1 m-l-5 m-r-5">--}}
-{{--									<span class="m-text10 p-b-1 days">--}}
-{{--										69--}}
-{{--									</span>--}}
-
-{{--                                    <span class="s-text5">--}}
-{{--										days--}}
-{{--									</span>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="flex-col-c-m size3 bo1 m-l-5 m-r-5">--}}
-{{--									<span class="m-text10 p-b-1 hours">--}}
-{{--										04--}}
-{{--									</span>--}}
-
-{{--                                    <span class="s-text5">--}}
-{{--										hrs--}}
-{{--									</span>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="flex-col-c-m size3 bo1 m-l-5 m-r-5">--}}
-{{--									<span class="m-text10 p-b-1 minutes">--}}
-{{--										32--}}
-{{--									</span>--}}
-
-{{--                                    <span class="s-text5">--}}
-{{--										mins--}}
-{{--									</span>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="flex-col-c-m size3 bo1 m-l-5 m-r-5">--}}
-{{--									<span class="m-text10 p-b-1 seconds">--}}
-{{--										05--}}
-{{--									</span>--}}
-
-{{--                                    <span class="s-text5">--}}
-{{--										secs--}}
-{{--									</span>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--        </div>--}}
-{{--    </section>--}}
-
 
     <!-- Blog -->
     <section class="blog bgwhite p-t-94 p-b-65">
@@ -191,23 +96,40 @@
                 <div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
                     <!-- Block3 -->
                     <div class="block3">
-                        <a href="" class="block3-img dis-block hov-img-zoom">
+                        <a href="{{route('home.article.detail' , ['slug' => $article->slug , 'id' => $article->id])}}" class="block3-img dis-block hov-img-zoom">
                             <img src="{{asset($article->image)}}" alt="IMG-BLOG">
                         </a>
 
                         <div class="block3-txt p-t-14">
                             <h4 class="p-b-7">
-                                <a href="blog-detail.html" class="m-text11">
+                                <a href="{{route('home.article.detail' , ['slug' => $article->slug , 'id' => $article->id])}}" class="m-text11">
                                     {{$article->title}}
                                 </a>
                             </h4>
+                            <div class="s-text8 flex-w flex-m p-b-21">
+									<span>
+										By Admin
+										<span class="m-l-3 m-r-6">|</span>
+									</span>
+
+                                <span>
+										{{ $article->created_at }}
+										<span class="m-l-3 m-r-6">|</span>
+									</span>
+
+
+
+                                <span>
+										8 Comments
+									</span>
+                            </div>
 
 {{--                            <span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>--}}
 {{--                            <span class="s-text6">on</span> <span class="s-text7">July 22, 2017</span>--}}
 
-                            <p class="s-text8 p-t-16">
-                                {{$article->summary}}
-                            </p>
+{{--                            <p class="s-text8 p-t-16">--}}
+{{--                                {{$article->summary}}--}}
+{{--                            </p>--}}
                         </div>
                     </div>
                 </div>

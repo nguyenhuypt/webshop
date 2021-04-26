@@ -47,10 +47,6 @@
 					{{number_format($product->price,0,",",".")}}
 				</span>
 
-                <p class="s-text8 p-t-10">
-                    Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare
-                    feugiat.
-                </p>
 
                 <!--  -->
                 <div class="p-t-33 p-b-60">
@@ -58,8 +54,50 @@
 
 
 
+                    <div class="flex-m flex-w">
+                        <div class="s-text25 w-size25 t-center">
+                            Color
+                        </div>
 
+                        <ul class="flex-w">
+                            <li class="m-r-10">
+                                <input class="checkbox-color-filter" id="color-filter1" type="radio" name="color-filter1">
+                                <label class="color-filter color-filter1" for="color-filter1"></label>
+                            </li>
+
+                            <li class="m-r-10">
+                                <input class="checkbox-color-filter" id="color-filter2" type="radio" name="color-filter2">
+                                <label class="color-filter color-filter2" for="color-filter2"></label>
+                            </li>
+
+                            <li class="m-r-10">
+                                <input class="checkbox-color-filter" id="color-filter3" type="radio" name="color-filter3">
+                                <label class="color-filter color-filter3" for="color-filter3"></label>
+                            </li>
+
+                            <li class="m-r-10">
+                                <input class="checkbox-color-filter" id="color-filter4" type="radio" name="color-filter4">
+                                <label class="color-filter color-filter4" for="color-filter4"></label>
+                            </li>
+
+                            <li class="m-r-10">
+                                <input class="checkbox-color-filter" id="color-filter5" type="radio" name="color-filter5">
+                                <label class="color-filter color-filter5" for="color-filter5"></label>
+                            </li>
+
+                            <li class="m-r-10">
+                                <input class="checkbox-color-filter" id="color-filter6" type="radio" name="color-filter6">
+                                <label class="color-filter color-filter6" for="color-filter6"></label>
+                            </li>
+
+                            <li class="m-r-10">
+                                <input class="checkbox-color-filter" id="color-filter7" type="radio" name="color-filter7">
+                                <label class="color-filter color-filter7" for="color-filter7"></label>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="flex-r-m flex-w p-t-10">
+
                         <div class="w-size16 flex-m flex-w">
                             <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
                                 <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
@@ -154,7 +192,7 @@
                                 <div class="block2-pic hov-img0">
 
                                     <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" >
-                                        <img width="180" height="250" src="{{asset($product->image)}}" alt="{{$product->name}}">
+                                        <img width="220" height="250" src="{{asset($product->image)}}" alt="{{$product->name}}">
 
                                     </a>
 

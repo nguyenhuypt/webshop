@@ -1,15 +1,17 @@
 <style>
-    .wrapper{
-        float:left;
-        width:100%;
-        min-height:250px;
+    .wrapper {
+        float: left;
+        width: 100%;
+        min-height: 250px;
     }
-    .navigation{
+
+    .navigation {
         float: left;
         width: 100%;
         text-align: center;
     }
-    .navigation ul{
+
+    .navigation ul {
         margin: 0;
         padding: 0;
         float: none;
@@ -17,28 +19,33 @@
         list-style: none;
         display: inline-block;
     }
-    .navigation ul li{
+
+    .navigation ul li {
         float: left;
         width: auto;
         margin-right: 60px;
         position: relative;
     }
-    .navigation ul li:last-child{
+
+    .navigation ul li:last-child {
         margin: 0;
     }
-    .navigation ul li a{
+
+    .navigation ul li a {
         float: left;
         width: 100%;
         color: #333;
         padding: 16px 0;
-        font-size: 16px;
+        font-size: 20px;
         line-height: normal;
-        text-decoration:none;
-        box-sizing:border-box;
+        text-decoration: none;
+        box-sizing: border-box;
         text-transform: uppercase;
-        font-family: 'Montserrat', sans-serif;      -webkit-transition:color 0.3s ease;
-        transition:color 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+        -webkit-transition: color 0.3s ease;
+        transition: color 0.3s ease;
     }
+
     .navigation .children {
         position: absolute;
         top: 100%;
@@ -57,42 +64,49 @@
         transition: transform 0.3s, opacity 0.3s;
         transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
     }
-    .navigation ul li .children  {
+
+    .navigation ul li .children {
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
         -webkit-transform: rotateX(-75deg);
         transform: rotateX(-75deg);
         visibility: hidden;
     }
-    .navigation ul li:hover > .children  {
+
+    .navigation ul li:hover > .children {
         -webkit-transform: rotateX(0deg);
         transform: rotateX(0deg);
         opacity: 1;
         visibility: visible;
     }
-    .navigation ul li .children .children{
+
+    .navigation ul li .children .children {
         left: 100%;
         top: 0;
     }
-    .navigation ul li.last .children{
+
+    .navigation ul li.last .children {
         right: 0;
         left: auto;
     }
-    .navigation ul li.last .children .children{
+
+    .navigation ul li.last .children .children {
         right: 100%;
         left: auto;
     }
-    .navigation ul li .children li{
+
+    .navigation ul li .children li {
         float: left;
         width: 100%;
-        margin:0;
+        margin: 0;
     }
-    .navigation ul li .children  a {
+
+    .navigation ul li .children a {
         display: block;
         font-family: "Montserrat", sans-serif;
         text-transform: uppercase;
         font-weight: 700;
-        font-size: 11px;
+        font-size: 13px;
         color: #333;
         text-align: left;
         line-height: 1.5em;
@@ -102,13 +116,20 @@
         -webkit-transition: background-color 0.3s ease;
         transition: background-color 0.3s ease;
     }
-    .navigation ul li .children  a:hover{
+
+    .navigation ul li .children a:hover {
         color: #fff;
-        background-color:goldenrod;
+        background-color: goldenrod;
     }
-    .navigation ul li a:hover{
-        color:goldenrod;
+
+    .navigation ul li a:hover {
+        color: goldenrod;
     }
+    .bb {
+        width: 350px;
+    }
+
+
 </style>
 <header class="header1">
     <!-- Header desktop -->
@@ -122,19 +143,23 @@
                 <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
             </div>
 
-            <span class="topbar-child1">
-					Free shipping for standard order over $100
-				</span>
 
-            <div class="topbar-child2">
-					<span class="topbar-email">
-						fashe@example.com
-					</span>
 
-                <div class="topbar-language rs1-select2">
-                    <select class="selection-1" name="time">
-                        <option>USD</option>
-                        <option>EUR</option>
+            <div class="topbar-child2 rightbar">
+                <form action="{{ route('home.search') }}" method="GET" class="search-form-cat">
+                <div class="pos-relative bo11 of-hidden bb">
+                    <input class="s-text7 size16 p-l-23 p-r-50" type="text" name="search-product" placeholder="Nhập từ khóa tìm kiếm">
+
+                    <button class="flex-c-m size5 ab-r-m color1 color0-hov trans-0-4">
+                        <i class="fs-13 fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                </form>
+
+                <div class="topbar-language rs1-select2" style="width: 200px">
+                    <select class="selection-1" name="cityCart" id="option-Country">
+                        <option value="" style="text-align: center">Hà Nội</option>
+
                     </select>
                 </div>
             </div>
@@ -157,22 +182,25 @@
 
                         @foreach($categories as $cate)
                             @if($cate->parent_id == 0)
-                        <li>
-                            <a href="">{{$cate->name}}</a>
-                            <ul class="children sub-menu">
-                                @foreach($categories as $child)
-                                    @if($child->parent_id == $cate->id)
-                                        <a class="dropdown-item" href="shop.html">{{ $child->name }}</a>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </li>
+                                <li>
+                                    <a href="{{route('home.category',[ 'slug' => $cate->slug])}}">{{$cate->name}}</a>
+                                    <ul class="children sub-menu">
+                                        @foreach($categories as $child)
+                                            @if($child->parent_id == $cate->id)
+                                                <a class="dropdown-item" href="{{route('home.category',[ 'slug' => $child->slug ])}}">{{ $child->name }}</a>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
                             @endif
                         @endforeach
 
                         <li class="last">
-                            <a href="{{route('home.contact')}}">Contact Us</a>
+                            <a href="{{ route('home.article')}}">Tin Tức</a>
                         </li>
+{{--                        <li class="last">--}}
+{{--                            <a href="{{route('home.contact')}}">Contact Us</a>--}}
+{{--                        </li>--}}
 
                     </ul>
                 </nav>
@@ -180,88 +208,18 @@
 
             <!-- Header Icon -->
             <div class="header-icons">
-{{--                <a href="#" class="header-wrapicon1 dis-block">--}}
-{{--                    <img src="/frontend/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">--}}
-{{--                </a>--}}
+                {{--                <a href="#" class="header-wrapicon1 dis-block">--}}
+                {{--                    <img src="/frontend/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">--}}
+                {{--                </a>--}}
 
-{{--                <span class="linedivide1"></span>--}}
+                {{--                <span class="linedivide1"></span>--}}
 
                 <div class="header-wrapicon2">
-                    <a href="{{route('home.cart')}}"><img src="/frontend/images/icons/icon-header-02.png" class="header-icon1-noti js-show-header-dropdown" alt="ICON"></a>
+                    <a href="{{route('home.cart')}}"><img src="/frontend/images/icons/icon-header-02.png"
+                                                          class="header-icon1-noti js-show-header-dropdown" alt="ICON"></a>
                     <span class="header-icons-noti">5</span>
 
-                    <!-- Header cart noti -->
-{{--                    <div class="header-cart header-dropdown">--}}
-{{--                        <ul class="header-cart-wrapitem">--}}
-{{--                            <li class="header-cart-item">--}}
-{{--                                <div class="header-cart-item-img">--}}
-{{--                                    <img src="/frontend/images/item-cart-01.jpg" alt="IMG">--}}
-{{--                                </div>--}}
 
-{{--                                <div class="header-cart-item-txt">--}}
-{{--                                    <a href="#" class="header-cart-item-name">--}}
-{{--                                        White Shirt With Pleat Detail Back--}}
-{{--                                    </a>--}}
-
-{{--                                    <span class="header-cart-item-info">--}}
-{{--											1 x $19.00--}}
-{{--										</span>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-
-{{--                            <li class="header-cart-item">--}}
-{{--                                <div class="header-cart-item-img">--}}
-{{--                                    <img src="/frontend/images/item-cart-02.jpg" alt="IMG">--}}
-{{--                                </div>--}}
-
-{{--                                <div class="header-cart-item-txt">--}}
-{{--                                    <a href="#" class="header-cart-item-name">--}}
-{{--                                        Converse All Star Hi Black Canvas--}}
-{{--                                    </a>--}}
-
-{{--                                    <span class="header-cart-item-info">--}}
-{{--											1 x $39.00--}}
-{{--										</span>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-
-{{--                            <li class="header-cart-item">--}}
-{{--                                <div class="header-cart-item-img">--}}
-{{--                                    <img src="/frontend/images/item-cart-03.jpg" alt="IMG">--}}
-{{--                                </div>--}}
-
-{{--                                <div class="header-cart-item-txt">--}}
-{{--                                    <a href="#" class="header-cart-item-name">--}}
-{{--                                        Nixon Porter Leather Watch In Tan--}}
-{{--                                    </a>--}}
-
-{{--                                    <span class="header-cart-item-info">--}}
-{{--											1 x $17.00--}}
-{{--										</span>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
-
-{{--                        <div class="header-cart-total">--}}
-{{--                            Total: $75.00--}}
-{{--                        </div>--}}
-
-{{--                        <div class="header-cart-buttons">--}}
-{{--                            <div class="header-cart-wrapbtn">--}}
-{{--                                <!-- Button -->--}}
-{{--                                <a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">--}}
-{{--                                    View Cart--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="header-cart-wrapbtn">--}}
-{{--                                <!-- Button -->--}}
-{{--                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">--}}
-{{--                                    Check Out--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
         </div>
@@ -285,7 +243,8 @@
                 <span class="linedivide2"></span>
 
                 <div class="header-wrapicon2">
-                    <img src="/frontend/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                    <img src="/frontend/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown"
+                         alt="ICON">
                     <span class="header-icons-noti">0</span>
 
                     <!-- Header cart noti -->
@@ -372,7 +331,7 @@
     </div>
 
     <!-- Menu Mobile -->
-    <div class="wrap-side-menu" >
+    <div class="wrap-side-menu">
         <nav class="side-menu">
             <ul class="main-menu">
                 <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
@@ -443,3 +402,42 @@
         </nav>
     </div>
 </header>
+
+@section('myJs')
+    <script>
+        function onloadAjax()
+        {
+            $.ajax({
+                url: 'https://vapi.vnappmob.com/api/province/',
+                method: 'get',
+                dataType: 'json',
+                statusCode:{
+                    200:function (response) {
+                        var arrCity = response.results;
+                        arrCity.map(item => {
+                            $('#option-Country').append('<option data-id-city="'+item.province_id+'" value="'+item.province_name+'">'+item.province_name+'</option>');
+                        });
+                    }
+                },
+            });
+        }
+
+        $('#option-District').change(function () {
+            var idDistrict = $('#option-District').select2().find(":selected").data("id-district");
+            $('#rm_option-Ward').siblings().remove();
+            $.ajax({
+                url: 'https://vapi.vnappmob.com/api/province/ward/'+idDistrict,
+                method: 'get',
+                dataType: 'json',
+                statusCode:{
+                    200:function (response) {
+                        var arrWard = response.results;
+                        arrWard.map(item => {
+                            $('#option-Ward').append('<option value="'+item.ward_name+'">'+item.ward_name+'</option>');
+                        });
+                    }
+                },
+            });
+        });
+    </script>
+@endsection

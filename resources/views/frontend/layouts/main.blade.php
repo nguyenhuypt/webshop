@@ -44,7 +44,7 @@
 @include('frontend.layouts.header')
 
 <!-- Slide1 -->
-
+@include('frontend.layouts.sidebar')
 
 <!-- Banner -->
 
@@ -55,6 +55,8 @@
 
 
 <!-- New Product -->
+
+
 
 
 
