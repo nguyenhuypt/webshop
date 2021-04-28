@@ -9,7 +9,7 @@ class Product extends Model
 {
 
 
-
+    protected $table = 'products';
 
     // định nghĩa quan hệ giữa bảng danh muc- sản phảm
     // một sản phẩm  thuộc về 1 danh mục

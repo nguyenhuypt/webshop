@@ -11,9 +11,7 @@
 
                             <div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
                                 <!-- Button -->
-                                <a href="" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
-                                    Shop Now
-                                </a>
+
                             </div>
                         </div>
                     </div>

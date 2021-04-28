@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-4 p-b-30">
                 <div class="hov-img-zoom">
-                    <img src="/frontendfrontend/images/abc.jpg" alt="IMG-ABOUT">
+                    <img height="500" src="/frontend/images/abc.jpg" alt="IMG-ABOUT">
                 </div>
             </div>
             @foreach($settings as $item)

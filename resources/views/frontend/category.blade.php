@@ -7,6 +7,21 @@
             border: none;
         }
     </style>
+    <div class="bread-crumb bgwhite flex-w p-l-167 p-r-15 p-t-30 p-l-15-sm">
+        <a href="/" class="s-text30">
+            Home
+            <i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
+        </a>
+
+        <a href="{{ route('home.category',[ 'slug' => $category->slug]) }}" class="s-text25" style="text-transform: inherit;">
+            {{$category->name}}
+
+        </a>
+
+        <span class="s-text17">
+
+		</span>
+    </div>
     <!-- Content page -->
     <section class="bgwhite p-t-55 p-b-65">
         <div class="container">
@@ -20,20 +35,20 @@
                             <ul>
                                 <li>
                                     <label class="cheker">
-                                        <input  class="filter-price" value="tat-ca" type="radio" name="availability"/>
+                                        <input  class="filter_category" data-text="tat-ca" value="checked" type="radio" name="category_id"/>
                                         <span></span>
                                     </label>
-                                    <a href="#" class="s-text13">Tất cả</a>
+                                    <a href="javascript:void(0)" class="s-text13">Tất cả</a>
                                 </li>
-
+                                @foreach($branchs as $child)
                                 <li>
                                     <label class="cheker">
-                                        <input  class="filter-price" value="" data-text="" type="radio" name="availability"/>
+                                        <input  class="filter-price" value="{{ $child->id }}" data-text="{{ $child->slug }}" type="radio" name="category_id"/>
                                         <span></span>
                                     </label>
-                                    <a href="#" class="s-text13"></a>
+                                    <a href="{{ route('home.category', ['slug' => $child->slug]) }}" class="s-text13">{{ $child->name }}</a>
                                 </li>
-
+                                @endforeach
                             </ul>
                         </div>
                         <!--  -->
@@ -46,14 +61,14 @@
                             <ul>
                                 <li>
                                     <label class="cheker">
-                                        <input class="filter-price" value="tat-ca" type="radio" name="availability"/>
+                                        <input {{ ($filter_price == '' ? 'checked' : '') }} class="filter-price" value="tat-ca" type="radio" name="availability"/>
                                         <span></span>
                                     </label>
                                     <a href="#" class="s-text13">Tất cả</a>
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input  class="filter-price" type="radio" name="price" value="1-2000000"/>
+                                        <input {{ ($filter_price == '1-2000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="1-2000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#" class="s-text13">Dưới 2 triệu
@@ -61,7 +76,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input  class="filter-price" type="radio" name="price" value="2000000-4000000"/>
+                                        <input {{ ($filter_price == '2000000-4000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="2000000-4000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#" class="s-text13">Từ 2 - 4 triệu
@@ -69,7 +84,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input  class="filter-price" type="radio" name="price" value="4000000-7000000"/>
+                                        <input {{ ($filter_price == '4000000-7000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="4000000-7000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#" class="s-text13">Từ 4 - 7 triệu
@@ -77,7 +92,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input  class="filter-price" type="radio" name="price" value="7000000-13000000"/>
+                                        <input {{ ($filter_price == '7000000-13000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="7000000-13000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#" class="s-text13">Từ 7 - 13 triệu
@@ -85,7 +100,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input  class="filter-price" type="radio" name="price" value="13000000-"/>
+                                        <input {{ ($filter_price == '13000000-' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="13000000-"/>
                                         <span></span>
                                     </label>
                                     <a href="#" class="s-text13">Trên 13 triệu
@@ -104,10 +119,11 @@
                     <!--  -->
                     <div class="flex-sb-m flex-w p-b-35 " >
                         <div class="flex-w">
-                            <h3></h3>
+                            <h5><b>{{$category->name}}</b></h5>
 
 
                         </div>
+
 
                         <div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10" style="border: none;">
                             <select class="selection-2" name="sorting" style="border: none;">
@@ -129,9 +145,9 @@
                             <!-- Block2 -->
 
                             <div class="block2">
-                                <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+                                <div class="block2-img wrap-pic-w of-hidden pos-relative">
                                     <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" >
-                                        <img width="200" height="320" src="{{asset($product->image)}}" alt="{{$product->name}}">
+                                        <img width="180" height="320" src="{{asset($product->image)}}" alt="{{$product->name}}">
 
                                     </a>
                                 </div>
@@ -159,11 +175,17 @@
 
                     <!-- Pagination -->
                     <div class="pagination flex-m flex-w p-t-26">
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+@endsection
+
+@section('myJS')
 
 
 @endsection

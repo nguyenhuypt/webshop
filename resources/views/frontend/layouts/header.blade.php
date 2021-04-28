@@ -214,9 +214,8 @@
 
                 {{--                <span class="linedivide1"></span>--}}
 
-                <div class="header-wrapicon2">
-                    <a href="{{route('home.cart')}}"><img src="/frontend/images/icons/icon-header-02.png"
-                                                          class="header-icon1-noti js-show-header-dropdown" alt="ICON"></a>
+                <div class="header-wrapicon2" >
+                    <a href="{{route('home.cart')}}"><img src="/frontend/images/icons/icon-header-02.png" class="header-icon1-noti js-show-header-dropdown" alt="ICON"></a>
                     <span class="header-icons-noti">5</span>
 
 

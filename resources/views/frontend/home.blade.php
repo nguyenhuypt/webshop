@@ -14,7 +14,7 @@
                 </div>
                 <div class="wrap-slick2">
                     <div class="slick2">
-                        @foreach($item['products'] as $product)
+                        @foreach($item['products'] as $key => $product)
                             <div class="item-slick2 col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                                 <!-- Block2 -->
                                 <div class="block2">
@@ -22,7 +22,6 @@
 
                                         <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" >
                                             <img width="180" height="250" src="{{asset($product->image)}}" alt="{{$product->name}}">
-
                                         </a>
 
                                     </div>
@@ -30,14 +29,12 @@
                                     <div class="block2-txt flex-w flex-t p-t-14">
                                         <div class="block2-txt-child1 flex-col-l ">
                                             <a href="{{ route('home.product', ['slug' => $product->slug , 'id' => $product->id]) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{$product->name}}</a>
-
                                             <span class="block2-oldprice m-text7 p-r-5">
-										{{ number_format($product->sale, 0,",",".") }}đ
-									</span>
-
+                                                {{ number_format($product->sale, 0,",",".") }}đ
+                                            </span>
                                             <span class="block2-newprice m-text8 p-r-5">
-										{{ number_format($product->price,0,",",".") }}đ
-									</span>
+                                                {{ number_format($product->price,0,",",".") }}đ
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -71,9 +68,7 @@
 
                             </h3>
 
-                            <a href="#" class="s-text4 hov2 p-t-20 " style="color: #0B0B61">
-                                View Collection
-                            </a>
+
                         </div>
                     </div>
                 </div>

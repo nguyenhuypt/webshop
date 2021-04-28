@@ -4,7 +4,8 @@
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+          rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <!--===============================================================================================-->
@@ -57,9 +58,6 @@
 <!-- New Product -->
 
 
-
-
-
 <!-- Footer -->
 @include('frontend.layouts.footer')
 
@@ -68,9 +66,6 @@
 			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
 		</span>
 </div>
-
-
-
 
 
 <!--===============================================================================================-->
@@ -82,9 +77,9 @@
 <script type="text/javascript" src="/frontend/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script type="text/javascript" src="/frontend/vendor/select2/select2.min.js"></script>
-@yield('myJs')
+
 <script>
-    $(".js-select2").each(function(){
+    $(".js-select2").each(function () {
         $(this).select2({
             minimumResultsForSearch: 20,
             dropdownParent: $(this).next('.dropDownSelect2')
@@ -109,19 +104,25 @@
 <script type="text/javascript" src="/frontend/vendor/lightbox2/js/lightbox.min.js"></script>
 <!--===============================================================================================-->
 <script type="text/javascript" src="/frontend/vendor/sweetalert/sweetalert.min.js"></script>
-<script>
-    $('.parallax100').parallax100();
-</script>
+{{--<script>--}}
+{{--    $('.parallax100').parallax100();--}}
+{{--</script>--}}
 <script type="text/javascript">
-    $('.block2-btn-addcart').each(function(){
+    $('.block2-btn-addcart').each(function () {
         var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(){
+        $(this).on('click', function () {
             swal(nameProduct, "is added to cart !", "success");
         });
     });
 
-    $('.block2-btn-addwishlist').each(function(){
+    $('.block2-btn-addwishlist').each(function () {
         var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+        });
+    });
+    $('.btn-addcart-product-detail').each(function(){
+        var nameProduct = $('.product-detail-name').html();
         $(this).on('click', function(){
             swal(nameProduct, "is added to wishlist !", "success");
         });
@@ -133,6 +134,8 @@
 
 <!--===============================================================================================-->
 <script src="/frontend/js/main.js"></script>
+<script src="/frontend/js/my_javascript.js"></script>
+@yield('myJs')
 
 
 </body>

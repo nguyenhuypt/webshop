@@ -1,26 +1,7 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
-        <a href="index.html" class="s-text16">
-            Home
-            <i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
-        </a>
 
-        <a href="product.html" class="s-text16">
-            Women
-            <i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
-        </a>
-
-        <a href="#" class="s-text16">
-            {{$product->name}}
-            <i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
-        </a>
-
-        <span class="s-text17">
-			Boxy T-Shirt with Roll Sleeve Detail
-		</span>
-    </div>
     <div class="container bgwhite p-t-35 p-b-80">
         <div class="flex-w flex-sb">
             <div class="w-size13 p-t-30 respon5">
@@ -44,59 +25,26 @@
                 </h4>
 
                 <span class="m-text17">
-					{{number_format($product->price,0,",",".")}}
+					{{number_format($product->price,0,",",".")}} đ
 				</span>
 
-
+                <hr>
+                <h5>Tình trạng :
+                    @if ($product->stock > 0)
+                        <span style="color: green">CÒN HÀNG</span>
+                    @else
+                        <span style="color: red">HẾT HÀNG</span>
+                    @endif
+                </h5>
+                <hr>
                 <!--  -->
                 <div class="p-t-33 p-b-60">
 
 
 
 
-                    <div class="flex-m flex-w">
-                        <div class="s-text25 w-size25 t-center">
-                            Color
-                        </div>
 
-                        <ul class="flex-w">
-                            <li class="m-r-10">
-                                <input class="checkbox-color-filter" id="color-filter1" type="radio" name="color-filter1">
-                                <label class="color-filter color-filter1" for="color-filter1"></label>
-                            </li>
 
-                            <li class="m-r-10">
-                                <input class="checkbox-color-filter" id="color-filter2" type="radio" name="color-filter2">
-                                <label class="color-filter color-filter2" for="color-filter2"></label>
-                            </li>
-
-                            <li class="m-r-10">
-                                <input class="checkbox-color-filter" id="color-filter3" type="radio" name="color-filter3">
-                                <label class="color-filter color-filter3" for="color-filter3"></label>
-                            </li>
-
-                            <li class="m-r-10">
-                                <input class="checkbox-color-filter" id="color-filter4" type="radio" name="color-filter4">
-                                <label class="color-filter color-filter4" for="color-filter4"></label>
-                            </li>
-
-                            <li class="m-r-10">
-                                <input class="checkbox-color-filter" id="color-filter5" type="radio" name="color-filter5">
-                                <label class="color-filter color-filter5" for="color-filter5"></label>
-                            </li>
-
-                            <li class="m-r-10">
-                                <input class="checkbox-color-filter" id="color-filter6" type="radio" name="color-filter6">
-                                <label class="color-filter color-filter6" for="color-filter6"></label>
-                            </li>
-
-                            <li class="m-r-10">
-                                <input class="checkbox-color-filter" id="color-filter7" type="radio" name="color-filter7">
-                                <label class="color-filter color-filter7" for="color-filter7"></label>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="flex-r-m flex-w p-t-10">
 
                         <div class="w-size16 flex-m flex-w">
                             <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
@@ -114,17 +62,17 @@
 
                             <div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
                                 <!-- Button -->
-                                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"  onclick="addToCart('{{$product->name}}')">
                                     Add to Cart
                                 </button>
                             </div>
                         </div>
-                    </div>
+
                 </div>
 
                 <div class="p-b-45">
-                    <span class="s-text8 m-r-35">SKU: MUG-01</span>
-                    <span class="s-text8">Categories: Mug, Design</span>
+                    <span class="s-text8 m-r-35">{{$product->sku}}</span>
+
                 </div>
 
                 <!--  -->
@@ -224,3 +172,5 @@
 
 
 @endsection
+
+

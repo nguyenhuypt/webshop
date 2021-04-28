@@ -78,9 +78,23 @@ class HomeController extends GeneralController
         ]);
     }
 
-    public function getProductsByCategory( $slug)
+    public function getProductsByCategory(Request $request,$slug)
     {
+        $filter_brands = $request->query('thuong-hieu');
+        $filter_price = $request->query('gia');
 
+        $branch_ids = [];
+        if ($filter_brands) {
+            $arr_filter_brands = explode(',', $filter_brands);
+            $arr_brands = Brand::whereIn('slug' , $arr_filter_brands)->get();
+
+            foreach ($arr_brands as $item) {
+                $branch_ids[] = $item->id;
+            }
+        }
+
+        //thuong hieu
+        $branchs = Brand::all();
         // step 1 : lấy chi tiết thể loại
         $cate = Category::where(['slug' => $slug])->first();
 
@@ -101,13 +115,42 @@ class HomeController extends GeneralController
             }
 ////dd($ids);
             // step 2 : lấy list sản phẩm theo thể loại
-            $products = Product::whereIn('category_id', $ids)
-                ->limit(10)->orderBy('id', 'desc')
-                ->get();
+            $query = DB::table('products')->select('*')
+                ->whereIn('category_id', $ids)
+                ->where('is_active', '=', 1);
 
+            //loc theo thuong hieu
+            if ($branch_ids) {
+                $query->whereIn('brand_id', $branch_ids);
+            }
+
+            //loc theo gia
+            if ($filter_price) {
+                $arr_price = explode('-', $filter_price);
+                if ($arr_price) {
+                    $min_price = (int)$arr_price[0];
+                    $max_price = (int)$arr_price[1];
+
+                    if ($min_price > 0) {
+                        $query->where('sale', '>=' , $min_price);
+                    }
+
+                    if ($max_price > 0) {
+                        $query->where('sale', '<=' , $max_price);
+                    }
+                }
+            }
+
+            $list_products = $query->paginate(12);;
             return view('frontend.category', [
-                'products' => $products
+                'category' => $cate,
+                'products' => $list_products,
+                'branchs' => $branchs,
+                'filter_price' => $filter_price ? $filter_price : '',
+                'arr_filter_brands' => json_encode($branch_ids)
             ]);
+        } else {
+            return $this->notfound();
         }
     }
 
@@ -139,10 +182,14 @@ class HomeController extends GeneralController
         ])->orderBy('position', 'ASC')
             ->orderBy('id', 'DESC')->get();
         $articles = Article::latest()->paginate(15);
-
+        $tags = Category::where([
+            ['parent_id' , '<>', 0],
+            ['is_active' , '=', 1]
+        ])->get();
         return view('frontend.list-articles',[
             'banners' => $banners,
             'articles' => $articles,
+            'tags' => $tags
 
         ]);
     }
@@ -154,9 +201,13 @@ class HomeController extends GeneralController
         if (!$article) {
             return $this->notfound();
         }
-
+        $tags = Category::where([
+            ['parent_id' , '<>', 0],
+            ['is_active' , '=', 1]
+        ])->get();
         return view('frontend.article',[
-            'article' => $article
+            'article' => $article,
+            'tags' => $tags
         ]);
     }
 

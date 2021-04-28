@@ -16,7 +16,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-                <a href="{{ route('admin.dashboard.index') }}">
+                <a href="{{ route('admin.dashboard') }}">
                     <i class="fa fa-calendar"></i> <span>Bảng điều khiển</span>
                 </a>
             </li>

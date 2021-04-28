@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cập nhật danh mục <small><a href="{{route('admin.product.index')}}" class="btn bg-purple btn-flat"> <i class="fa fa-bars"></i>
+            Cập nhật danh mục <small><a href="{{route('admin.category.index')}}" class="btn bg-purple btn-flat"> <i class="fa fa-bars"></i>
                     Danh Sách</a></small>
         </h1>
     </section>

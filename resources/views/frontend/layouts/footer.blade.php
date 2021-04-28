@@ -1,9 +1,9 @@
 <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
     <div class="flex-w p-b-90">
         <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
-            <h4 class="s-text12 p-b-30">
-                Company
-            </h4>
+{{--            <h4 class="s-text12 p-b-30">--}}
+{{--                Company--}}
+{{--            </h4>--}}
 
             <div>
                 <p style="font-size: large;" class="s-text5 w-size27">
@@ -32,19 +32,19 @@
 
             <ul>
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.article')}}" class="s-text7">
                         Giới thiệu công ty
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.article')}}" class="s-text7">
                         Blog
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.about')}}" class="s-text7">
                         CSKH
                     </a>
                 </li>
@@ -62,25 +62,25 @@
 
             <ul>
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.about')}}" class="s-text7">
                         Điều khoản
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.about')}}" class="s-text7">
                         Chính sách bảo mật
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.about')}}" class="s-text7">
                         Bảo hành
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.about')}}" class="s-text7">
                         Chính hãng
                     </a>
                 </li>
@@ -92,13 +92,13 @@
 
             <ul>
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.about')}}" class="s-text7">
                         Mua hàng online
                     </a>
                 </li>
 
                 <li class="p-b-9">
-                    <a href="#" class="s-text7">
+                    <a href="{{route('home.about')}}" class="s-text7">
                         Phương thức thanh toán
                     </a>
                 </li>
@@ -136,23 +136,23 @@
 
     <div class="t-center p-l-15 p-r-15">
         <a href="#">
-            <img class="h-size2" src="frontend/images/icons/paypal.png" alt="IMG-PAYPAL">
+            <img class="h-size2" src="/frontend/images/icons/paypal.png" alt="IMG-PAYPAL">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="frontend/images/icons/visa.png" alt="IMG-VISA">
+            <img class="h-size2" src="/frontend/images/icons/visa.png" alt="IMG-VISA">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="frontend/images/icons/mastercard.png" alt="IMG-MASTERCARD">
+            <img class="h-size2" src="/frontend/images/icons/mastercard.png" alt="IMG-MASTERCARD">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="frontend/images/icons/express.png" alt="IMG-EXPRESS">
+            <img class="h-size2" src="/frontend/images/icons/express.png" alt="IMG-EXPRESS">
         </a>
 
         <a href="#">
-            <img class="h-size2" src="frontend/images/icons/discover.png" alt="IMG-DISCOVER">
+            <img class="h-size2" src="/frontend/images/icons/discover.png" alt="IMG-DISCOVER">
         </a>
 
         <div class="t-center s-text8 p-t-20">

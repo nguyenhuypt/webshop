@@ -65,6 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </form><!-- END -->
                     </div>
@@ -90,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="cart-detail p-3 p-md-4">
+                                <div class="cart-detail p-3 p-md-3">
                                     <h3 class="billing-heading mb-4">Phương thức thanh toán</h3>
                                     <div class="form-group">
                                         <div class="col-md-12">
@@ -107,8 +108,12 @@
                                         </div>
                                     </div>
 
-                                    <p><a href="#"class="btn btn-primary py-3 px-4">Đặt hàng</a></p>
+                                    <p><a href="#"class="btn btn-primary py-3 px-4">Đặt hàng</a>
+                                        <a href="#"class="btn btn-danger py-3 px-4">Hủy đặt hàng</a>
+                                    </p>
+
                                 </div>
+
                             </div>
                         </div>
                     </div> <!-- .col-md-8 -->

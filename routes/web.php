@@ -12,12 +12,15 @@
 */
 //trang chu
 Route::get('/', 'HomeController@index')->name('home');
+//chi tiet sp
 Route::get('/san-pham/{slug}', 'HomeController@product')->name('home.product');
 Route::get('/lien-he', 'HomeController@contact')->name('home.contact');
 Route::post('/lien-he', 'HomeController@postContact')->name('home.postContact');
 Route::get('/gioi-thieu', 'HomeController@about')->name('home.about');
 //gio hang
-Route::get('/gio-hang', 'CartController@index')->name('home.cart');
+Route::get('/dat-hang', 'CartController@index')->name('home.cart');
+// Thêm sản phẩm vào giỏ hàng
+Route::get('/dat-hang/them-sp-vao-gio-hang', 'CartController@addToCart')->name('home.cart.add-to-cart');
 //thanh toan
 Route::get('/thanh-toan', 'CartController@checkout')->name('home.cart.checkout');
 //tin tuc
@@ -47,6 +50,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin
     Route::resource('banner', 'BannerController');
     Route::resource('brand', 'BrandController');
     Route::resource('contact', 'ContactController');
-    Route::resource('dashboard', 'DashboardController');
+    Route::get('/', 'AdminController@index')->name('dashboard');
 
 });
