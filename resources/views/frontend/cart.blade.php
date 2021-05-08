@@ -1,6 +1,16 @@
 @extends('frontend.layouts.main')
 
 @section('content')
+    @if(session('cart'))
+        @php
+            $cart = session('cart');
+            $products = $cart->products;
+            $totalPrice = $cart->totalPrice;
+            $totalQty = $cart->totalQty;
+            $discount = $cart->discount;
+            $coupon = $cart->coupon;
+            $payment = $totalPrice - $discount;
+        @endphp
     <!-- Cart -->
     <section class="cart bgwhite p-t-70 p-b-100">
         <div class="container">
@@ -12,34 +22,29 @@
                             <th class="column-1"></th>
                             <th class="column-2">Product</th>
                             <th class="column-3">Price</th>
-                            <th class="column-4 p-l-70">Quantity</th>
-                            <th class="column-5">Total</th>
+                            <th class="column-4 " style="width: 120px">Quantity</th>
+                            <th class="column-5" style="width: 320px;text-align: center">Total</th>
+                            <th class="cart-delete text-center">&nbsp;</th>
                         </tr>
-
-                        <tr class="table-row">
+                        @foreach($products as $product)
+                        <tr class="table-row" data-id-product="{{$product['item']->id}}">
                             <td class="column-1">
                                 <div class="cart-img-product b-rad-4 o-f-hidden">
-                                    <img src="images/item-10.jpg" alt="IMG-PRODUCT">
+                                    <img src="{{asset($product['item']->image)}}" alt="IMG-PRODUCT">
                                 </div>
                             </td>
-                            <td class="column-2">Men Tshirt</td>
-                            <td class="column-3">$36.00</td>
-                            <td class="column-4">
-                                <div class="flex-w bo5 of-hidden w-size17">
-                                    <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-                                        <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-                                    </button>
-
-                                    <input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-
-                                    <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-                                        <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-                                    </button>
+                            <td class="column-2">{{$product['item']->name}}</td>
+                            <td class="column-3">{{ number_format($product['item']->price ,0,",",".") }} đ</td>
+                            <td class="column-4" style="width: 17px">
+                                <div class=" w-size8.5">
+                                    <input  style="width: 60px;padding: 5px" type="number" nname="num-product1" id="product{{$product['item']->id}}" data-num-product="{{ $product['qty'] }}" value="{{ $product['qty'] }}" min="1">
                                 </div>
                             </td>
-                            <td class="column-5">$36.00</td>
+                            <td class="column-5" style="width: 320px;text-align: center">{{ number_format($product['qty'] * $product['item']->price ,0,",",".") }}</td>
+                            <td> <button style="padding-right: 25px;color: red" title="Delete product" onclick="removeProductCart('{{$product['item']->id}}')">x</button></td>
+
                         </tr>
-
+                        @endforeach
 
                     </table>
                 </div>
@@ -116,7 +121,7 @@
         </div>
     </section>
 
-
+    @endif
 
 @endsection
 

@@ -21,6 +21,11 @@ class HomeController extends GeneralController
         parent::__construct();
     }
 
+    public function test ()
+    {
+        dd(12131321231321231);
+    }
+
     public function index()
     {
 
@@ -51,7 +56,7 @@ class HomeController extends GeneralController
                 }
 
                 $list[$key]['category'] = $category;
-
+//                dd($ids);
                 $list[$key]['products'] = Product::where(['is_active' => 1])
                     ->whereIn('category_id', $ids)
                     ->limit(12)

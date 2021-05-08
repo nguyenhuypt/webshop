@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>Home</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
@@ -77,21 +78,31 @@
 <script type="text/javascript" src="/frontend/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script type="text/javascript" src="/frontend/vendor/select2/select2.min.js"></script>
-
-<script>
-    $(".js-select2").each(function () {
-        $(this).select2({
-            minimumResultsForSearch: 20,
-            dropdownParent: $(this).next('.dropDownSelect2')
-        });
-    })
-</script>
 <script type="text/javascript">
     $(".selection-1").select2({
         minimumResultsForSearch: 20,
         dropdownParent: $('#dropDownSelect1')
     });
+
+    $(".selection-2").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect2')
+    });
 </script>
+{{--<script>--}}
+{{--    $(".js-select2").each(function () {--}}
+{{--        $(this).select2({--}}
+{{--            minimumResultsForSearch: 20,--}}
+{{--            dropdownParent: $(this).next('.dropDownSelect2')--}}
+{{--        });--}}
+{{--    })--}}
+{{--</script>--}}
+{{--<script type="text/javascript">--}}
+{{--    $(".selection-1").select2({--}}
+{{--        minimumResultsForSearch: 20,--}}
+{{--        dropdownParent: $('#dropDownSelect1')--}}
+{{--    });--}}
+{{--</script>--}}
 <script type="text/javascript">
     var base_url = '{{ url('/') }}';
 </script>
@@ -121,12 +132,12 @@
             swal(nameProduct, "is added to wishlist !", "success");
         });
     });
-    $('.btn-addcart-product-detail').each(function(){
-        var nameProduct = $('.product-detail-name').html();
-        $(this).on('click', function(){
-            swal(nameProduct, "is added to wishlist !", "success");
-        });
-    });
+    // $('.btn-addcart-product-detail').each(function(){
+    //     var nameProduct = $('.product-detail-name').html();
+    //     $(this).on('click', function(){
+    //         swal(nameProduct, "is added to wishlist !", "success");
+    //     });
+    // });
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
@@ -136,6 +147,7 @@
 <script src="/frontend/js/main.js"></script>
 <script src="/frontend/js/my_javascript.js"></script>
 @yield('myJs')
+
 
 
 </body>

@@ -24,7 +24,7 @@ class CartController extends GeneralController
 
 
         $id = $request->id;
-        $sizeProdcut = $request->sizeProduct;
+
         $quantity = $request->quantity;
 
         $product = Product::find($id);
@@ -46,8 +46,12 @@ class CartController extends GeneralController
         return response()->json(['msg' => 'ok'], 200);
     }
 
-    public function checkout()
+
+
+        public function checkout()
     {
         return view('frontend.checkout');
     }
+
 }
+

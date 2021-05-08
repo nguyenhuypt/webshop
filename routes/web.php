@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 //trang chu
 Route::get('/', 'HomeController@index')->name('home');
 //chi tiet sp
@@ -20,7 +21,10 @@ Route::get('/gioi-thieu', 'HomeController@about')->name('home.about');
 //gio hang
 Route::get('/dat-hang', 'CartController@index')->name('home.cart');
 // Thêm sản phẩm vào giỏ hàng
-Route::get('/dat-hang/them-sp-vao-gio-hang', 'CartController@addToCart')->name('home.cart.add-to-cart');
+Route::post('/dat-hang/them-sp-vao-gio-hang', 'CartController@addToCart')->name('home.cart.add-to-cart');
+
+Route::post('/add-product', 'HomeController@test')->name('test');
+
 //thanh toan
 Route::get('/thanh-toan', 'CartController@checkout')->name('home.cart.checkout');
 //tin tuc
@@ -39,9 +43,8 @@ Route::post('/admin/login', 'AdminController@postLogin')->name('admin.postLogin'
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin'], function () {
 
 
-    Route::resource('default', 'DefaultController');
+
     Route::resource('category', 'CategoryController');
-    Route::resource('photo', 'PhotoController');
     Route::resource('vendor', 'VendorController');
     Route::resource('setting', 'SettingController');
     Route::resource('user', 'UserController');

@@ -20,10 +20,11 @@
             </div>
 
             <div class="w-size14 p-t-30 respon5">
+
                 <h4 class="product-detail-name m-text16 p-b-13">
                     {{$product->name}}
                 </h4>
-
+                <input type="hidden" id="idProduct" name="idProduct" value="{{$product->id}}">
                 <span class="m-text17">
 					{{number_format($product->price,0,",",".")}} đ
 				</span>
@@ -39,30 +40,18 @@
                 <hr>
                 <!--  -->
                 <div class="p-t-33 p-b-60">
-
-
-
-
-
-
-
                         <div class="w-size16 flex-m flex-w">
                             <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
-                                <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-                                    <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-                                </button>
 
-                                <input class="size8 m-text18 t-center num-product" type="number" name="num-product"
-                                       value="1">
 
-                                <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-                                    <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-                                </button>
+                                <input  style="width: 60px;padding: 7px" type="number" name="quantity" id="quantity" value="1" min="1">
+
+
                             </div>
 
                             <div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
                                 <!-- Button -->
-                                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"  onclick="addToCart('{{$product->name}}')">
+                                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"  title="Add to cart" onclick="addToCart('{{$product->name}}')">
                                     Add to Cart
                                 </button>
                             </div>

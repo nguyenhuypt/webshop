@@ -147,8 +147,9 @@
 
             <div class="topbar-child2 rightbar">
                 <form action="{{ route('home.search') }}" method="GET" class="search-form-cat">
+
                 <div class="pos-relative bo11 of-hidden bb">
-                    <input class="s-text7 size16 p-l-23 p-r-50" type="text" name="search-product" placeholder="Nhập từ khóa tìm kiếm">
+                    <input  value="{{ isset($keyword) ? $keyword : '' }}" class="s-text7 size16 p-l-23 p-r-50" type="text" name="tu-khoa" placeholder="Nhập từ khóa tìm kiếm">
 
                     <button class="flex-c-m size5 ab-r-m color1 color0-hov trans-0-4">
                         <i class="fs-13 fa fa-search" aria-hidden="true"></i>
@@ -215,9 +216,11 @@
                 {{--                <span class="linedivide1"></span>--}}
 
                 <div class="header-wrapicon2" >
-                    <a href="{{route('home.cart')}}"><img src="/frontend/images/icons/icon-header-02.png" class="header-icon1-noti js-show-header-dropdown" alt="ICON"></a>
-                    <span class="header-icons-noti">5</span>
-
+                    @if(session('cart'))
+                    <span class="header-icons-noti" id="totalProduct"  >{{session('cart')->totalQty }}</span>
+                    @else <span class="header-icons-noti" id="totalProduct" >0</span>
+                    @endif
+                        <a href="{{route('home.cart')}}"><img src="/frontend/images/icons/icon-header-02.png" class="header-icon1-noti js-show-header-dropdown" alt="ICON"></a>
 
                 </div>
             </div>

@@ -24,6 +24,7 @@ class Cart extends Model
             $this->coupon = $cart->coupon;
         }
     }
+
     // Thêm sản phẩm vào giỏ hàng
     public function add($product,$quantity)
     {
@@ -46,5 +47,6 @@ class Cart extends Model
         $this->totalPrice = $this->totalPrice + ($quantity * $product->price);
         $this->totalQty = $this->totalQty + $quantity; // tăng lên 1 sản phẩm
     }
+
 
 }
