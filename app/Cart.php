@@ -48,5 +48,31 @@ class Cart extends Model
         $this->totalQty = $this->totalQty + $quantity; // tăng lên 1 sản phẩm
     }
 
+    // Xóa sản phẩm khỏi giỏ hàng
+    public function remove($id)
+    {
+        // trừ bớt số lượng
+        $this->totalQty = $this->totalQty - $this->products[$id]['qty'];
+        // trừ giá
+        $this->totalPrice = $this->totalPrice - $this->products[$id]['price'];
 
+        unset($this->products[$id]);
+
+    }
+
+    // Cập nhật giỏ hàng
+    public function store($id , $qty)
+    {
+        // Xóa số lượng + giá của thằng hiện tại để cập nhật lại
+        $this->totalQty = $this->totalQty - $this->products[$id]['qty'];
+        $this->totalPrice = $this->totalPrice - $this->products[$id]['price'];
+
+        // Cập nhật số lượng && giá của sẩn phẩm
+        $this->products[$id]['qty'] = $qty;
+        $this->products[$id]['price'] = $qty * $this->products[$id]['item']->sale;
+
+        // cập nhật lại giỏ hàng
+        $this->totalQty = $this->totalQty + $this->products[$id]['qty'];
+        $this->totalPrice = $this->totalPrice + $this->products[$id]['price'];
+    }
 }

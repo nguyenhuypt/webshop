@@ -1,30 +1,33 @@
 @extends('frontend.layouts.main')
 
 @section('content')
+    @php
+        $cart = session('cart');
+        $products = $cart->products;
+        $totalPrice = $cart->totalPrice;
+        $totalQty = $cart->totalQty;
+        $discount = $cart->discount;
+        $coupon = $cart->coupon;
+        $payment = $totalPrice - $discount;
+    @endphp
     <section style="background: #E6E6E6">
-        <div class="hero-wrap hero-bread" style="background-image: url('frontend/images/bg_1.jpg');">
-            <div class="container">
-                <div class="row no-gutters slider-text align-items-center justify-content-center">
-                    <div class="col-md-9 ftco-animate text-center">
-                        <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ </a></span> <span>Phương thức thanh toán</span></p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <br>
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-7 ftco-animate">
                         <form action="#" class="billing-form">
                             <h3 class="mb-4 billing-heading">Chi tiết thanh toán</h3>
+                            <hr>
                             <div class="row align-items-end">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="postcodezip">Họ và tên</label>
-                                        <input type="text" class="form-control" placeholder="">
+                                        <input type="text" class="form-control fullname" id="fullname" placeholder="">
                                     </div>
+                                    @if ($errors->has('fullname'))
+                                        <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('fullname') }}</span>
+                                    @endif
                                 </div>
 
                                 <div class="w-100"></div>
@@ -32,22 +35,31 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="postcodezip">Điện thoại</label>
-                                            <input type="tel" class="form-control" placeholder="">
+                                            <input type="tel" class="form-control phone" placeholder="">
                                         </div>
+                                        @if ($errors->has('phone'))
+                                            <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('phone') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="postcodezip">Email</label>
-                                        <input type="email" class="form-control" placeholder="">
+                                        <input type="email" class="form-control email" placeholder="">
                                     </div>
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="streetaddress">Địa chỉ nhận hàng</label>
-                                        <input type="text" class="form-control" placeholder="Số nhà và tên đường">
+                                        <input type="text" class="form-control address" placeholder="">
                                     </div>
+                                    @if ($errors->has('address'))
+                                        <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('address') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -76,17 +88,17 @@
                                     <h3 class="billing-heading mb-4">Tổng giỏ hàng</h3>
                                     <p class="d-flex">
                                     <p class="d-flex">
-                                        <span>Phụ tính</span>
-                                        <span>300.000 đ</span>
+                                        <span>Phụ tính:</span>
+                                        <span>&nbsp;{{ number_format($totalPrice ,0,",",".") }} đ</span>
                                     </p>
                                     <p class="d-flex">
-                                        <span>Giảm giá</span>
-                                        <span>0 đ</span>
+                                        <span>Giảm giá:</span>
+                                        <span>&nbsp;- {{ number_format($discount ,0,",",".") }} đ</span>
                                     </p>
                                     <hr>
                                     <p class="d-flex total-price">
-                                        <span>Tổng cộng</span>
-                                        <span>300.000 đ</span>
+                                        <span>Tổng cộng:</span>
+                                        <span>&nbsp;{{ number_format($payment ,0,",",".") }} đ</span>
                                     </p>
                                 </div>
                             </div>
@@ -96,7 +108,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="radio">
-                                                <label><input type="radio" name="optradio" class="mr-2"> Thanh toán trực tiếp</label>
+                                                <label><input checked type="radio" name="optradio" class="mr-2"> Thanh toán trực tiếp</label>
                                             </div>
                                         </div>
                                     </div>
@@ -108,8 +120,10 @@
                                         </div>
                                     </div>
 
-                                    <p><a href="#"class="btn btn-primary py-3 px-4">Đặt hàng</a>
-                                        <a href="#"class="btn btn-danger py-3 px-4">Hủy đặt hàng</a>
+                                    <p>
+                                        <a href="{{route('home.cart.destroy')}}" class="btn btn-danger py-3 px-4">Hủy đặt hàng</a>
+                                        <a href="" class="btn btn-primary py-3 px-4" type="submit">Đặt hàng</a>
+
                                     </p>
 
                                 </div>
