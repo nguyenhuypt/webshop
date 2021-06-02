@@ -78,8 +78,8 @@ module.exports = function (grunt) {
           token: "//@colorpicker-defaults",
           file: 'src/js/colorpicker-defaults.js'
         }, {
-          token: "//@colorpicker-component",
-          file: 'src/js/colorpicker-component.js'
+          token: "//@colorpicker-components",
+          file: 'src/js/colorpicker-components.js'
         }]
       },
       less: {

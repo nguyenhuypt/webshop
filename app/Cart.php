@@ -60,17 +60,16 @@ class Cart extends Model
 
     }
 
+
     // Cập nhật giỏ hàng
     public function store($id , $qty)
     {
         // Xóa số lượng + giá của thằng hiện tại để cập nhật lại
         $this->totalQty = $this->totalQty - $this->products[$id]['qty'];
         $this->totalPrice = $this->totalPrice - $this->products[$id]['price'];
-
         // Cập nhật số lượng && giá của sẩn phẩm
         $this->products[$id]['qty'] = $qty;
-        $this->products[$id]['price'] = $qty * $this->products[$id]['item']->sale;
-
+        $this->products[$id]['price'] = $this->products[$id]['qty'] * $this->products[$id]['item']->price;
         // cập nhật lại giỏ hàng
         $this->totalQty = $this->totalQty + $this->products[$id]['qty'];
         $this->totalPrice = $this->totalPrice + $this->products[$id]['price'];

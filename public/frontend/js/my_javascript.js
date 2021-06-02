@@ -49,4 +49,36 @@ function addToCart(name) {
     return false;
 }
 
+$(document).on("click", "#num_product", function () {
+
+    var id = $(this).attr('data-id');
+    var beforeNum = $('#product'+id).attr('data-num-product');
+    var quantity = $('#product'+id).val();
+
+
+    if (quantity == 0) {
+        alert('Nhập số lượng phải lớn hơn 0');
+        $(this).val(beforeNum);
+        return false;
+    }
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/dat-hang/cap-nhat-gio-hang',
+        type: 'GET',
+        data: {
+            id: id,
+            quantity: quantity
+        },
+        dataType: "json", // kiểu dữ liệu trả về
+        success: function (response) { // success : kết quả trả về sau khi gửi request ajax
+            $('#my-cart').html(response.html);
+        },
+        error: function (e) { // lỗi nếu có
+            console.log(e.message);
+        }
+    });
+});
+
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\cart;
 use App\Coupon;
+
+use App\Order;
+use App\OrderDetail;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -113,7 +116,7 @@ class CartController extends GeneralController
 
         return response()->json([
             'status'  => true,
-            'data' => view('frontend.cart')->render()
+            'data' => view('frontend.components.minicart')->render()
         ]);
 
     }
@@ -159,6 +162,69 @@ class CartController extends GeneralController
         return view('frontend.checkout');
     }
 
+    public function pCheckout()
+    {
+        return view('frontend.postCheckout');
+    }
+
+    // thêm đơn hàng
+    public function postCheckout(Request $request)
+    {
+
+        if (!session('cart')) {
+            return redirect('/');
+        }
+//        dd($request->all());
+        $request->validate([
+            'fullname' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'address' => 'required'
+        ],[
+            'fullname.required' => 'bạn cần nhập họ tên',
+            'phone.required' => ' bạn cần nhập sdt',
+            'email.required' => ' bạn cần nhập email',
+            'address.required' => 'bạn cần nhập địa chỉ'
+        ]);
+
+        $_cart = session('cart');
+
+        // Lưu vào bảng đơn đặt hàng - orders
+        $order = new Order();
+        $order->fullname = $request->fullname;
+        $order->phone = $request->phone;
+        $order->email = $request->email;
+        $order->address = $request->address;
+        $order->note = $request->description;
+        $order->total = $_cart->totalPrice;
+        $order->discount = $_cart->discount;
+        $order->coupon = $_cart->coupon;
+        $order->order_status_id = 1; // 1 = mới
+
+        if ($order->save()) {
+
+            $order->code = 'AB-'.$order->id.'-'.date('d').date('m').date('Y');
+            $order->save();
+
+            foreach ($_cart->products as $product) {
+                //loi o đâyy
+                $_detail = new OrderDetail();
+                $_detail->order_id = $order->id;
+                $_detail->name = $product['item']->name;
+                $_detail->image = $product['item']->image;
+                $_detail->sku = $product['item']->sku;
+                $_detail->user_id = $product['item']->user_id;
+                $_detail->product_id = $product['item']->id;
+                $_detail->qty = $product['qty'];
+                $_detail->price = $product['price'];
+//                dd($_detail);
+                $_detail->save();
+            }
+
+            $request->session()->forget('cart');
+            return redirect()->route('home.cart.pcheckout')
+                ->with('msg', 'Cảm ơn bạn đã đặt hàng. Mã đơn hàng của bạn : #'.$order->code);        }
+    }
     // Hủy đơn hàng
     public function destroy(Request $request)
     {

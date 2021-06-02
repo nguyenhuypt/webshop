@@ -13,21 +13,34 @@
     <section style="background: #E6E6E6">
         <br>
         <section class="ftco-section">
+
+            <form action="{{route('home.cart.checkout')}}" class="billing-form" method="post">
+                @csrf
             <div class="container">
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-warning"></i> Lỗi!</h4>
+                        @foreach($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="row justify-content-center">
                     <div class="col-xl-7 ftco-animate">
-                        <form action="#" class="billing-form">
+
                             <h3 class="mb-4 billing-heading">Chi tiết thanh toán</h3>
                             <hr>
                             <div class="row align-items-end">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="postcodezip">Họ và tên</label>
-                                        <input type="text" class="form-control fullname" id="fullname" placeholder="">
+                                        <input type="text" class="form-control "  name="fullname" placeholder="">
                                     </div>
                                     @if ($errors->has('fullname'))
                                         <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('fullname') }}</span>
                                     @endif
+
                                 </div>
 
                                 <div class="w-100"></div>
@@ -35,7 +48,7 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="postcodezip">Điện thoại</label>
-                                            <input type="tel" class="form-control phone" placeholder="">
+                                            <input type="tel" class="  form-control" name="phone" placeholder="">
                                         </div>
                                         @if ($errors->has('phone'))
                                             <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('phone') }}</span>
@@ -45,7 +58,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="postcodezip">Email</label>
-                                        <input type="email" class="form-control email" placeholder="">
+                                        <input type="email" class="form-control " name="email" placeholder="">
                                     </div>
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('email') }}</span>
@@ -55,7 +68,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="streetaddress">Địa chỉ nhận hàng</label>
-                                        <input type="text" class="form-control address" placeholder="">
+                                        <input type="text" class="form-control " name="address" placeholder="">
                                     </div>
                                     @if ($errors->has('address'))
                                         <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('address') }}</span>
@@ -64,7 +77,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="streetaddress">Ghi chú</label>
-                                        <textarea type="text" class="form-control" placeholder=""></textarea>
+                                        <textarea type="text" class="form-control"  placeholder=""></textarea>
                                     </div>
                                 </div>
 
@@ -79,7 +92,7 @@
                                 </div>
 
                             </div>
-                        </form><!-- END -->
+                        <!-- END -->
                     </div>
                     <div class="col-xl-5">
                         <div class="row mt-5 pt-3">
@@ -122,7 +135,7 @@
 
                                     <p>
                                         <a href="{{route('home.cart.destroy')}}" class="btn btn-danger py-3 px-4">Hủy đặt hàng</a>
-                                        <a href="" class="btn btn-primary py-3 px-4" type="submit">Đặt hàng</a>
+                                        <button class="btn btn-primary py-3 px-4 procedtocheckout" type="submit" >Đặt hàng</button>
 
                                     </p>
 
@@ -133,6 +146,7 @@
                     </div> <!-- .col-md-8 -->
                 </div>
             </div>
+            </form>
         </section> <!-- .section -->
     </section>
 @endsection

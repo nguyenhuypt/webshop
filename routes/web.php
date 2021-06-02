@@ -43,7 +43,8 @@ Route::get('/dat-hang/huy-don-hang', 'CartController@destroy')->name('home.cart.
 
 //thanh toan
 Route::get('/thanh-toan', 'CartController@checkout')->name('home.cart.checkout');
-
+Route::post('/thanh-toan', 'CartController@postCheckout')->name('home.cart.checkout');
+Route::post('/thanh-toan', 'CartController@pCheckout')->name('home.cart.pcheckout');
 //tin tuc
 Route::get('/tin-tuc', 'HomeController@getListArticles')->name('home.article');
 
@@ -76,5 +77,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin
     Route::resource('brand', 'BrandController');
     Route::resource('contact', 'ContactController');
     Route::get('/', 'AdminController@index')->name('dashboard');
+    Route::resource('order', 'OrderController');
 
 });
