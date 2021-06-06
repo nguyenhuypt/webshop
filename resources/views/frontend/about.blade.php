@@ -3,9 +3,9 @@
 @section('content')
 
     <!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url('frontend/images/about.jpg');">
 
-</section>
+
+
 
 <!-- content page -->
 <section class="bgwhite p-t-66 p-b-38">

@@ -1,15 +1,15 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    @php
-        $cart = session('cart');
-        $products = $cart->products;
-        $totalPrice = $cart->totalPrice;
-        $totalQty = $cart->totalQty;
-        $discount = $cart->discount;
-        $coupon = $cart->coupon;
-        $payment = $totalPrice - $discount;
-    @endphp
+{{--    @php--}}
+{{--        $cart = session('cart');--}}
+{{--        $products = $cart->products;--}}
+{{--        $totalPrice = $cart->totalPrice;--}}
+{{--        $totalQty = $cart->totalQty;--}}
+{{--        $discount = $cart->discount;--}}
+{{--        $coupon = $cart->coupon;--}}
+{{--        $payment = $totalPrice - $discount;--}}
+{{--    @endphp--}}
     <section style="background: #E6E6E6">
         <br>
         <section class="ftco-section">
@@ -92,58 +92,14 @@
                                 </div>
 
                             </div>
+                        <p style="text-align: center">
+                            <a href="{{route('home.cart.destroy')}}" class="btn btn-danger py-3 px-4">Hủy đặt hàng</a>
+                            <button class="btn btn-primary py-3 px-4 procedtocheckout" type="submit" >Đặt hàng</button>
+
+                        </p>
                         <!-- END -->
                     </div>
-                    <div class="col-xl-5">
-                        <div class="row mt-5 pt-3">
-                            <div class="col-md-12 d-flex mb-5">
-                                <div class="cart-detail cart-total p-3 p-md-4">
-                                    <h3 class="billing-heading mb-4">Tổng giỏ hàng</h3>
-                                    <p class="d-flex">
-                                    <p class="d-flex">
-                                        <span>Phụ tính:</span>
-                                        <span>&nbsp;{{ number_format($totalPrice ,0,",",".") }} đ</span>
-                                    </p>
-                                    <p class="d-flex">
-                                        <span>Giảm giá:</span>
-                                        <span>&nbsp;- {{ number_format($discount ,0,",",".") }} đ</span>
-                                    </p>
-                                    <hr>
-                                    <p class="d-flex total-price">
-                                        <span>Tổng cộng:</span>
-                                        <span>&nbsp;{{ number_format($payment ,0,",",".") }} đ</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="cart-detail p-3 p-md-3">
-                                    <h3 class="billing-heading mb-4">Phương thức thanh toán</h3>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input checked type="radio" name="optradio" class="mr-2"> Thanh toán trực tiếp</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="radio">
-                                                <label><input type="radio" name="optradio" class="mr-2"> Thanh toán bằng phương thức chuyển khoản</label>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <p>
-                                        <a href="{{route('home.cart.destroy')}}" class="btn btn-danger py-3 px-4">Hủy đặt hàng</a>
-                                        <button class="btn btn-primary py-3 px-4 procedtocheckout" type="submit" >Đặt hàng</button>
-
-                                    </p>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div> <!-- .col-md-8 -->
                 </div>
             </div>
             </form>

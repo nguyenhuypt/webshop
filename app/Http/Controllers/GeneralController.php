@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Setting;
@@ -18,7 +19,8 @@ class GeneralController extends Controller
             'is_active' => 1
         ])->orderBy('position', 'ASC')->get();
         $this->categories = $categories;
-
+// 2. Lấy dữ liệu - Banner
+        $banners = Banner::where('is_active', 1)->orderBy('position', 'desc')->get();
         // Danh mục
 //        $menu = Category::where('is_active',1)->orderBy('position','ASC')
 //            ->orderBy('id','DESC')->get();
@@ -35,6 +37,7 @@ class GeneralController extends Controller
 //            'menu_brand' => $menu_brand,
 //            'menu' => $menu,
             'setting' => $setting,
+            'banners' => $banners,
         ]);
     }
 

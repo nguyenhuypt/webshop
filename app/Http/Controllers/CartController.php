@@ -162,10 +162,6 @@ class CartController extends GeneralController
         return view('frontend.checkout');
     }
 
-    public function pCheckout()
-    {
-        return view('frontend.postCheckout');
-    }
 
     // thêm đơn hàng
     public function postCheckout(Request $request)
@@ -187,6 +183,7 @@ class CartController extends GeneralController
             'address.required' => 'bạn cần nhập địa chỉ'
         ]);
 
+
         $_cart = session('cart');
 
         // Lưu vào bảng đơn đặt hàng - orders
@@ -207,7 +204,7 @@ class CartController extends GeneralController
             $order->save();
 
             foreach ($_cart->products as $product) {
-                //loi o đâyy
+
                 $_detail = new OrderDetail();
                 $_detail->order_id = $order->id;
                 $_detail->name = $product['item']->name;
@@ -222,8 +219,15 @@ class CartController extends GeneralController
             }
 
             $request->session()->forget('cart');
-            return redirect()->route('home.cart.pcheckout')
-                ->with('msg', 'Cảm ơn bạn đã đặt hàng. Mã đơn hàng của bạn : #'.$order->code);        }
+            return redirect()->route('home.checkout')
+                ->with('msg', 'Cảm ơn bạn đã đặt hàng. Mã đơn hàng của bạn : #'.$order->code);
+        }
+    }
+
+    public  function ptCheckout()
+    {
+
+        return view('frontend.postCheckout');
     }
     // Hủy đơn hàng
     public function destroy(Request $request)

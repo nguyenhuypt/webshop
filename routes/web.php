@@ -44,7 +44,7 @@ Route::get('/dat-hang/huy-don-hang', 'CartController@destroy')->name('home.cart.
 //thanh toan
 Route::get('/thanh-toan', 'CartController@checkout')->name('home.cart.checkout');
 Route::post('/thanh-toan', 'CartController@postCheckout')->name('home.cart.checkout');
-Route::post('/thanh-toan', 'CartController@pCheckout')->name('home.cart.pcheckout');
+Route::get('/thanh-toan/hoan-tat-dat-hang', 'CartController@ptCheckout')->name('home.checkout');
 //tin tuc
 Route::get('/tin-tuc', 'HomeController@getListArticles')->name('home.article');
 
